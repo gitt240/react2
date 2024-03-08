@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         paddingHorizontal: 24,
-        paddingTop: 46
+        paddingTop: 30
     },
 })
 var CATEGORY = [
