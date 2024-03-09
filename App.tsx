@@ -5,10 +5,10 @@ import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
-import Register from './src/baiOn1/Register';
 import Home from './src/baiOn1/Home';
 import MainStack from './src/baiOn1/MainStack';
 import Login from './src/asm/Login';
+import Register from './src/asm/Register';
 
 
 
@@ -17,7 +17,8 @@ function App(): React.JSX.Element {
   return (
     // <Register />
     // <MainStack />
-    <Login/>
+    // <Login/>
+    <Register/>
   );
 }
 
