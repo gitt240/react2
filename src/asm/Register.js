@@ -1,19 +1,23 @@
 import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const Login = () => {
+const Register = () => {
     return (
         <View style={styles.container}>
-            <ImageBackground style={styles.imgBackground} source={require('../../assets/image/asm/login_register/background.png')} >
+            {/* <ImageBackground style={styles.imgBackground} source={require('../../assets/image/asm/login_register/background2.png')} >
                 <TouchableOpacity style={styles.btnBack}>
                     <Image source={require('../../assets/image/asm/login_register/back.png')} />
                 </TouchableOpacity>
-            </ImageBackground>
+            </ImageBackground> */}
+
+            <Image style={styles.imgBackground} source={require('../../assets/image/asm/login_register/background2.png')} />
 
             <View style={styles.viewCotainer}>
-                <Text style={styles.txtHead}>Chào mừng bạn</Text>
-                <Text style={styles.txtSubHead}>Đăng nhập tài khoản</Text>
-                <TextInput style={styles.input} placeholder='Nhập email hoặc số điện thoại' />
+                <Text style={styles.txtHead}>Đăng ký</Text>
+                <Text style={styles.txtSubHead}>Tạo tài khoản</Text>
+                <TextInput style={styles.input} placeholder='Họ tên' />
+                <TextInput style={styles.input} placeholder='E-mail' />
+                <TextInput style={styles.input} placeholder='Số điện thoại' />
                 <View style={styles.viewPass}>
                     <TextInput style={styles.input} placeholder='Mật khẩu' />
                     <TouchableOpacity style={styles.btnEye}>
@@ -21,16 +25,10 @@ const Login = () => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.viewRememberForget}>
-                    <View style={styles.viewRemember}>
-                        <Image source={require('../../assets/image/asm/login_register/not_remember.png')} />
-                        <Text style={styles.txtRemem}>Nhớ tài khoản</Text>
-                    </View>
-                    <Text style={styles.txtFoget}>Forgot Password ? </Text>
-                </View>
+                <Text style={styles.txtRule}>Để đăng ký tài khoản, bạn đồng ý <Text style={styles.txtGreen}>Terms & Conditions</Text> and <Text style={styles.txtGreen}>Privacy Policy</Text></Text>
 
-                <TouchableOpacity style={styles.btnLogin}>
-                    <Text style={styles.txtLogin}>Đăng nhập</Text>
+                <TouchableOpacity style={styles.btnRegister}>
+                    <Text style={styles.txtRegister}>Đăng ký</Text>
                 </TouchableOpacity>
 
                 <View style={styles.viewOr}>
@@ -50,9 +48,9 @@ const Login = () => {
                 </View>
 
                 <View style={styles.viewRegister}>
-                    <Text style={styles.txtBlack}>Bạn không có tài khoản</Text>
+                    <Text style={styles.txtBlack}>Tôi đã có tài khoản</Text>
                     <TouchableOpacity>
-                        <Text style={styles.txtRegister}>Tạo tài khoán</Text>
+                        <Text style={styles.txtLogin}>Đăng nhập</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -60,7 +58,7 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register
 
 const styles = StyleSheet.create({
     viewRegister: {
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    txtRegister: {
+    txtLogin: {
         fontSize: 12,
         fontFamily: 'Poppins',
         color: '#009245',
@@ -102,13 +100,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    txtLogin: {
+    txtRegister: {
         fontSize: 20,
         fontFamily: 'Poppins',
         fontWeight: 'bold',
         color: '#fff',
     },
-    btnLogin: {
+    btnRegister: {
         backgroundColor: '#4CAF50',
         borderRadius: 15,
         justifyContent: 'center',
@@ -116,29 +114,18 @@ const styles = StyleSheet.create({
         height: 50,
         marginBottom: 20
     },
-    txtFoget: {
-        fontSize: 11,
-        fontFamily: 'Poppins',
+    txtGreen: {
         color: '#009245',
-        fontWeight: 'bold'
+        textDecorationLine: 'underline'
     },
-    txtRemem: {
-        fontSize: 11,
+    txtRule: {
+        fontSize: 12,
+        color: '#000',
         fontFamily: 'Poppins',
-        color: '#949090',
-        marginLeft: 5,
-        fontWeight: 'bold'
-    },
-    viewRemember: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    viewRememberForget: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 25,
-        marginTop: 3
+        marginBottom: 20,
+        marginTop: 10,
+        textAlign: 'center',
+        marginHorizontal: 25
     },
     viewPass: {
         flexDirection: 'row'
@@ -161,7 +148,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Poppins',
         color: '#000',
-        marginBottom: 20,
+        marginBottom: 12,
         textAlign: 'center'
     },
     txtHead: {
@@ -183,7 +170,7 @@ const styles = StyleSheet.create({
     },
     imgBackground: {
         width: '100%',
-        height: 350,
+        height: 220,
         objectFit: 'cover'
     },
     container: {
