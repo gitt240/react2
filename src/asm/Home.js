@@ -1,4 +1,4 @@
-import { FlatList, Image, ImageBackground, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
         )
     }
     return (
-        <View style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
             <StatusBar translucent backgroundColor={'#F6F6F6'} />
             <View style={styles.viewHead}>
                 <View style={styles.viewTxtHead}>
@@ -34,21 +34,35 @@ const Home = () => {
 
             <View style={styles.viewBody}>
                 <Text style={styles.txtBlack}>Cây trồng </Text>
-                    <FlatList
-                        numColumns={2}
-                        columnWrapperStyle={{justifyContent:'space-between'}}
-                        data={plant}
-                        renderItem={renderPlant}
-                        key={item => item.id}
-                    />
+                <FlatList
+                    numColumns={2}
+                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                    data={plant}
+                    renderItem={renderPlant}
+                    key={item => item.id}
+                />
+
+                <TouchableOpacity style={styles.btnSeenAll}>
+                    <Text style={styles.txtSeenAll}>Xem thêm Cây trồng</Text>
+                </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
 export default Home
 
 const styles = StyleSheet.create({
+    txtSeenAll: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#000',
+        textDecorationLine: 'underline',
+    },
+    btnSeenAll: {
+        marginVertical: 30,
+        alignItems: 'flex-end'
+    },
     txtPrice: {
         fontSize: 16,
         fontWeight: '500',
@@ -67,13 +81,14 @@ const styles = StyleSheet.create({
     imgBackgroundProduct: {
         backgroundColor: '#F6F6F6',
         borderRadius: 8,
-        marginBottom:4
-        // alignItems:'center',
+        marginBottom: 4,
+        alignItems: 'center',
         // width:155,
         // height:134
     },
     btnPlant: {
-        marginTop: 15
+        marginTop: 15,
+        width: '48%'
     },
     txtBlack: {
         fontSize: 24,
