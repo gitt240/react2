@@ -9,6 +9,7 @@ import MainStack from './src/baiOn1/MainStack';
 import Login from './src/asm/Login';
 import Register from './src/asm/Register';
 import Home from './src/asm/Home';
+import Buoi1 from './src/baiHoc/Buoi1';
 
 
 
@@ -19,7 +20,8 @@ function App(): React.JSX.Element {
     // <MainStack />
     // <Login/>
     // <Register/>
-    <Home/>
+    // <Home/>
+    <Buoi1/>
   );
 }
 
