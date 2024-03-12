@@ -19,12 +19,14 @@ const DateView = ({ title, data }) => {
         ))
     }
     return (
-        <View style={{ flex: 1 }}>
+        <View>
             <Text style={styles.txtTitle}>{title}</Text>
+            <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {renderDate(data)}
                 {/* <View style={{flexDirection:'row' }}></View> */}
             </ScrollView>
+            </View>
         </View>
     )
 }
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
     },
     containerDate: {
         width: width-45,
+        // width:'100%',
         padding: 16,
         borderRadius: 20,
         backgroundColor: '#fff',

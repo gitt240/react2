@@ -1,7 +1,54 @@
 import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
-const Register = () => {
+const Register = ({ navigation }) => {
+    const [email, setEmail] = useState('')
+    const [pass, setPass] = useState('')
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
+    const [errorEmail, setErrorEmail] = useState('')
+    const [errorPass, setErrorPass] = useState('')
+    const [errorName, setErrorName] = useState('')
+    const [errorPhone, setErrorPhone] = useState('')
+
+    const changeEmail = (data) => {
+        setEmail(data)
+        setErrorEmail('')
+    }
+
+    const changePass = (data) => {
+        setPass(data)
+        setErrorPass('')
+    }
+
+    const changeName = (data) => {
+        setName(data)
+        setErrorName('')
+    }
+
+    const changePhone = (data) => {
+        setPhone(data)
+        setErrorPhone('')
+    }
+
+    const checkEmpty = () => {
+        if (!name) {
+            setErrorName('Họ tên không được để trống')
+            return
+        }
+        if (!email) {
+            setErrorEmail('Vui lòng nhập email')
+            return
+        }
+        if (!phone) {
+            setErrorPhone('Số điện thoại không được để trống')
+        }
+        if (!pass) {
+            setErrorPass('Vui lòng nhập mật khẩu')
+            return
+        }
+
+    }
     return (
         <View style={styles.container}>
             {/* <ImageBackground style={styles.imgBackground} source={require('../../assets/image/asm/login_register/background2.png')} >
@@ -15,19 +62,31 @@ const Register = () => {
             <View style={styles.viewCotainer}>
                 <Text style={styles.txtHead}>Đăng ký</Text>
                 <Text style={styles.txtSubHead}>Tạo tài khoản</Text>
-                <TextInput style={styles.input} placeholder='Họ tên' />
-                <TextInput style={styles.input} placeholder='E-mail' />
-                <TextInput style={styles.input} placeholder='Số điện thoại' />
-                <View style={styles.viewPass}>
-                    <TextInput style={styles.input} placeholder='Mật khẩu' />
-                    <TouchableOpacity style={styles.btnEye}>
-                        <Image source={require('../../assets/image/asm/login_register/hiden_pass.png')} />
-                    </TouchableOpacity>
+                <View style={styles.viewInput}>
+                    <TextInput style={[styles.input, errorName ? styles.inputError : styles.input]} placeholder='Họ tên' onChangeText={(text) => { changeName(text) }} />
+                    {errorName && <Text style={styles.txtError}>{errorName}</Text>}
+                </View>
+                <View style={styles.viewInput}>
+                    <TextInput style={[styles.input, errorEmail ? styles.inputError : styles.input]} placeholder='E-mail' onChangeText={(text) => { changeEmail(text) }} />
+                    {errorEmail && <Text style={styles.txtError}>{errorEmail}</Text>}
+                </View>
+                <View style={styles.viewInput}>
+                    <TextInput style={[styles.input, errorPhone ? styles.inputError : styles.input]} placeholder='Số điện thoại' onChangeText={(text) => { changePhone(text) }} />
+                    {errorPhone && <Text style={styles.txtError}>{errorPhone}</Text>}
+                </View>
+                <View style={styles.viewInput}>
+                    <View style={styles.viewPass}>
+                        <TextInput style={[styles.input, errorPass ? styles.inputError : styles.input]} placeholder='Mật khẩu' onChangeText={(text) => { changePass(text) }} />
+                        <TouchableOpacity style={styles.btnEye}>
+                            <Image source={require('../../assets/image/asm/login_register/hiden_pass.png')} />
+                        </TouchableOpacity>
+                    </View>
+                    {errorPass && <Text style={styles.txtError}>{errorPass}</Text>}
                 </View>
 
                 <Text style={styles.txtRule}>Để đăng ký tài khoản, bạn đồng ý <Text style={styles.txtGreen}>Terms & Conditions</Text> and <Text style={styles.txtGreen}>Privacy Policy</Text></Text>
 
-                <TouchableOpacity style={styles.btnRegister}>
+                <TouchableOpacity style={styles.btnRegister} onPress={checkEmpty}>
                     <Text style={styles.txtRegister}>Đăng ký</Text>
                 </TouchableOpacity>
 
@@ -49,7 +108,7 @@ const Register = () => {
 
                 <View style={styles.viewRegister}>
                     <Text style={styles.txtBlack}>Tôi đã có tài khoản</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => { navigation.navigate('Login') }}>
                         <Text style={styles.txtLogin}>Đăng nhập</Text>
                     </TouchableOpacity>
                 </View>
@@ -61,6 +120,18 @@ const Register = () => {
 export default Register
 
 const styles = StyleSheet.create({
+    viewInput: {
+        marginBottom: 10
+    },
+    inputError: {
+        borderColor: '#CE0000'
+    },
+    txtError: {
+        fontSize: 12,
+        color: '#CE0000',
+        fontWeight: 'bold',
+        marginTop: 4,
+    },
     viewRegister: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -86,8 +157,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 35,
-        marginBottom: 30
+        marginVertical: 25
     },
     txtOr: {
         fontSize: 12,
@@ -141,20 +211,19 @@ const styles = StyleSheet.create({
         width: '100%',
         borderWidth: 1,
         borderColor: '#8B8B8B',
-        marginBottom: 10,
         borderRadius: 10
     },
     txtSubHead: {
         fontSize: 18,
         fontFamily: 'Poppins',
         color: '#000',
-        marginBottom: 12,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginBottom: 12
     },
     txtHead: {
         fontSize: 30,
-        fontFamily: 'Poppins',
-        fontWeight: 'bold',
+        fontFamily: 'Poppins-Bold',
+        // fontWeight: 'bold',
         color: '#000',
         marginTop: 4,
         textAlign: 'center'

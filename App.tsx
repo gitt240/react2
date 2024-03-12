@@ -12,6 +12,7 @@ import Home from './src/asm/Home';
 import Buoi1 from './src/baiHoc/Buoi1';
 import Bai1 from './src/Lap/Lab1/Bai1';
 import Bai2 from './src/Lap/Lab1/Bai2';
+import StackNavigation from './src/asm/StackNavigation';
 
 
 
@@ -24,8 +25,9 @@ function App(): React.JSX.Element {
     // <Register/>
     // <Home/>
     // <Bai1/>
-    <Bai2/>
+    // <Bai2/>
     // <Buoi1/>
+    <StackNavigation/>
   );
 }
 
