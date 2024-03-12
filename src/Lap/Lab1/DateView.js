@@ -4,7 +4,7 @@ const { width } = Dimensions.get('window');
 const DateView = ({ title, data }) => {
     const renderDate = (data) => {
         return data.map((item, index) => (
-            <View key={index} style={[styles.containerDate]}>
+            <View key={index} style={[styles.containerDate, index == 2 && styles.itemLast]}>
                 <Text style={styles.txtGrey}>Địa điểm</Text>
                 <Text style={styles.txtBlack}>{item.address}</Text>
                 <Text style={styles.txtGrey}>Ngày khỏi hành</Text>
@@ -21,12 +21,9 @@ const DateView = ({ title, data }) => {
     return (
         <View>
             <Text style={styles.txtTitle}>{title}</Text>
-            <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {renderDate(data)}
-                {/* <View style={{flexDirection:'row' }}></View> */}
             </ScrollView>
-            </View>
         </View>
     )
 }
@@ -34,6 +31,9 @@ const DateView = ({ title, data }) => {
 export default DateView
 
 const styles = StyleSheet.create({
+    itemLast: {
+        marginRight: 0
+    },
     img: {
         width: '100%',
         height: 170,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     containerDate: {
-        width: width-45,
+        width: width - 42,
         // width:'100%',
         padding: 16,
         borderRadius: 20,
