@@ -157,3 +157,48 @@ var PLANT = [
         property: 'Ưa bóng'
     },
 ]
+var CHAU=[
+    {
+        id: 1,
+        name: 'Planta Trắng ',
+        image: require('../../assets/image/asm/home/c1.png'),
+    },
+    {
+        id: 2,
+        name: 'Planta Lemon Balm',
+        image: require('../../assets/image/asm/home/c2.png'),
+    },
+    {
+        id: 3,
+        name: 'Planta Rosewood',
+        image: require('../../assets/image/asm/home/c3.png'),
+    },
+    {
+        id: 4,
+        name: 'Planta Dove Grey',
+        image: require('../../assets/image/asm/home/c4.png'),
+    },
+]
+
+var PHUKIEN = [
+    {
+        id: 1,
+        name: 'Bình tưới CB2 SAIC',
+        image: require('../../assets/image/asm/home/pk1.png'),
+    },
+    {
+        id: 2,
+        name: 'Bình xịt Xiaoda ',
+        image: require('../../assets/image/asm/home/pk2.png'),
+    },
+    {
+        id: 3,
+        name: 'Bộ cuốc xẻng mini',
+        image: require('../../assets/image/asm/home/pk3.png'),
+    },
+    {
+        id: 4,
+        name: 'Giá đỡ Finn Terrazzo ',
+        image: require('../../assets/image/asm/home/pk4.png'),
+    },
+]

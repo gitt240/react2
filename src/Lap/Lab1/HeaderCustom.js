@@ -4,11 +4,11 @@ import React from 'react'
 const HeaderCustom = ({ leftIcon, title, rightIcon }) => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.btnLeft}>
+            <TouchableOpacity style={styles.btn}>
                 {leftIcon && <Image style={styles.img} source={leftIcon} />}
             </TouchableOpacity>
             <Text style={styles.txtTitle}>{title}</Text>
-            <TouchableOpacity style={styles.btnRight}>
+            <TouchableOpacity style={styles.btn}>
                 {rightIcon && <Image style={styles.img} source={rightIcon} />}
             </TouchableOpacity>
         </View>
@@ -21,21 +21,13 @@ const styles = StyleSheet.create({
     img: {
         width: 34
     },
-    btnRight: {
+    btn: {
         width: 34,
-        marginLeft: 'auto'
-    },
-    txtTitle: {
-        textAlign: 'center',
-        flex: 1
-    },
-    btnLeft: {
-        marginRight: 'auto',
-        width: 34
     },
     container: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent:'space-between',
         marginTop: 20,
     }
 })
