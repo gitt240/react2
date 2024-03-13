@@ -4,7 +4,7 @@ const { width } = Dimensions.get('window');
 const DateView = ({ title, data }) => {
     const renderDate = (data) => {
         return data.map((item, index) => (
-            <View key={index} style={[styles.containerDate, index == 2 && styles.itemLast]}>
+            <View key={index} style={[styles.containerDate, index == 3 && styles.itemLast]}>
                 <Text style={styles.txtGrey}>Địa điểm</Text>
                 <Text style={styles.txtBlack}>{item.address}</Text>
                 <Text style={styles.txtGrey}>Ngày khỏi hành</Text>
