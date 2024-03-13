@@ -23,7 +23,7 @@ const Detail = () => {
         </TouchableOpacity>
       </ImageBackground>
 
-      <View style={styles.viewBody}>
+      <View style={styles.viewInfo}>
         <View style={styles.viewPropertyContainer}>
           <View style={styles.viewProperty}>
             <Text style={styles.txtProperty}>Cây trồng</Text>
@@ -33,9 +33,48 @@ const Detail = () => {
           </View>
         </View>
 
-        <Text>250.000đ</Text>
-        <Text>Chi tiết sản phẩm</Text>
+        <Text style={styles.txtPrice}>250.000đ</Text>
+        <Text style={styles.txtDetail}>Chi tiết sản phẩm</Text>
+
+        <View style={styles.viewRow}>
+          <Text style={styles.txtBlack}>Kích cỡ</Text>
+          <Text style={styles.txtBlack}>Nhỏ</Text>
+        </View>
+        <View style={styles.viewRow}>
+          <Text style={styles.txtBlack}>Xuất xử</Text>
+          <Text style={styles.txtBlack}>Châu Phi</Text>
+        </View>
+        <View style={styles.viewRow}>
+          <Text style={styles.txtBlack}>Tình trạng</Text>
+          <Text style={styles.txtGreen}>Còn 156 sp</Text>
+        </View>
       </View>
+
+      <View style={styles.viewBuy}>
+        <View style={styles.viewQuantityPrice}>
+          <View>
+            <Text style={styles.txtOpacity}>Đã chọn 1 sản phẩm</Text>
+            <View style={styles.viewQuantity}>
+              <TouchableOpacity>
+                <Image source={require('../../assets/image/asm/detail/reduce.png')} />
+              </TouchableOpacity>
+              <Text style={styles.txtQuantity}>1</Text>
+              <TouchableOpacity>
+                <Image source={require('../../assets/image/asm/detail/increase.png')} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View>
+            <Text style={styles.txtOpacity}>Tạm tính</Text>
+            <Text style={styles.txtPriceBlack}>250.000đ</Text>
+          </View>
+        </View>
+        <TouchableOpacity style={styles.btnBuy}>
+          <Text style={styles.txtBuy}>Chọn mua</Text>
+        </TouchableOpacity>
+      </View>
+
     </View>
   )
 }
@@ -43,23 +82,96 @@ const Detail = () => {
 export default Detail
 
 const styles = StyleSheet.create({
-  txtProperty:{
-    fontSize:14,
-    color:'#fff'
+  viewBuy:{
+    paddingHorizontal:24,
+    marginTop:15
+  },
+  txtBuy: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: '500'
+  },
+  btnBuy: {
+    height: 50,
+    backgroundColor: '#007537',
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  txtPriceBlack: {
+    fontSize: 24,
+    color: '#000',
+    fontWeight: '500'
+  },
+  txtQuantity: {
+    fontSize: 16,
+    color: '#000',
+    marginHorizontal: 32
+  },
+  viewQuantity: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 7
+  },
+  txtOpacity: {
+    fontSize: 14,
+    color: '#000',
+    opacity: 0.6,
+  },
+  viewQuantityPrice: {
+    marginBottom: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  txtGreen: {
+    fontSize: 14,
+    color: '#007537'
+  },
+  txtBlack: {
+    fontSize: 14,
+    color: '#000'
+  },
+  viewRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingBottom: 5,
+    borderBottomColor: '#ABABAB',
+    borderBottomWidth: 1,
+    marginBottom: 15
+  },
+  txtDetail: {
+    fontSize: 16,
+    color: '#000',
+    marginVertical: 15,
+    paddingBottom: 5,
+    borderBottomColor: '#221F1F',
+    borderBottomWidth: 1,
+    fontWeight: '500'
+  },
+  txtPrice: {
+    fontSize: 24,
+    color: '#007537',
+    fontWeight: '500'
+  },
+  txtProperty: {
+    fontSize: 14,
+    color: '#fff'
   },
   viewProperty: {
     paddingHorizontal: 8,
     paddingVertical: 4,
-    backgroundColor: '#009245',
-    borderRadius:4,
-    marginRight:8
+    backgroundColor: '#007537',
+    borderRadius: 4,
+    marginRight: 8
   },
   viewPropertyContainer: {
-    marginTop: 15,
+    marginVertical: 15,
     flexDirection: 'row'
   },
-  viewBody: {
-    paddingHorizontal: 24
+  viewInfo: {
+    paddingHorizontal: 48,
   },
   btnLeft: {
     position: 'absolute',
@@ -80,13 +192,13 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 24
+    paddingHorizontal: 50
   },
   viewHead: {
     paddingHorizontal: 24
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   }
 })
