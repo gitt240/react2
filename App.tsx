@@ -15,6 +15,8 @@ import Bai2 from './src/Lap/Lab1/Bai2';
 import StackNavigation from './src/asm/StackNavigation';
 import Bai3 from './src/Lap/Lab1/Bai3';
 import Detail from './src/asm/Detail';
+import Cart from './src/asm/Cart';
+import ListProduct from './src/asm/ListProduct';
 
 
 
@@ -29,7 +31,9 @@ function App(): React.JSX.Element {
     // <Bai1/>
     // <Bai2/>
     // <Bai3 />
-    <Detail/>
+    // <Detail/>
+    // <Cart/>
+    <ListProduct/>
     // <Buoi1/>
     // <StackNavigation/>
   );
