@@ -1,21 +1,11 @@
 import { FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
+import SectionProduct from './SectionProduct'
 
 const Home = () => {
     const [plant, setPlant] = useState(PLANT)
-    const renderPlant = ({ item }) => {
-        const { id, name, image, property } = item
-        return (
-            <TouchableOpacity style={styles.btnPlant}>
-                <ImageBackground style={styles.imgBackgroundProduct}>
-                    <Image source={image} />
-                </ImageBackground>
-                <Text style={styles.txtName}>{name}</Text>
-                <Text style={styles.txtProperty}>{property}</Text>
-                <Text style={styles.txtPrice}>250.000đ</Text>
-            </TouchableOpacity>
-        )
-    }
+    const [chau, setChau] = useState(CHAU)
+    const [phukien, setPhuKien] = useState(PHUKIEN)
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
             <StatusBar translucent backgroundColor={'#F6F6F6'} />
@@ -38,12 +28,58 @@ const Home = () => {
                     numColumns={2}
                     columnWrapperStyle={{ justifyContent: 'space-between' }}
                     data={plant}
-                    renderItem={renderPlant}
+                    renderItem={({ item }) => (
+                        <SectionProduct
+                            item={item}
+                        />
+                    )}
                     key={item => item.id}
                 />
 
                 <TouchableOpacity style={styles.btnSeenAll}>
                     <Text style={styles.txtSeenAll}>Xem thêm Cây trồng</Text>
+                </TouchableOpacity>
+
+                {/*  */}
+                <Text style={styles.txtBlack}>Chậu cây trồng </Text>
+                <FlatList
+                    numColumns={2}
+                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                    data={chau}
+                    renderItem={({ item }) => (
+                        <SectionProduct
+                            item={item}
+                        />
+                    )}
+                    key={item => item.id}
+                />
+
+                <TouchableOpacity style={styles.btnSeenAll}>
+                    <Text style={styles.txtSeenAll}>Xem thêm Chậu cây trồng</Text>
+                </TouchableOpacity>
+
+                {/*  */}
+                <Text style={styles.txtBlack}>Phụ kiện</Text>
+                <FlatList
+                    numColumns={2}
+                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                    data={phukien}
+                    renderItem={({ item }) => (
+                        <SectionProduct
+                            item={item}
+                        />
+                    )}
+                    key={item => item.id}
+                />
+
+                <TouchableOpacity style={styles.btnSeenAll}>
+                    <Text style={styles.txtSeenAll}>Xem thêm Phụ kiện</Text>
+                </TouchableOpacity>
+
+                {/*  */}
+                <Text style={styles.txtBlack}>Combo chăm sóc (mới)</Text>
+                <TouchableOpacity style={styles.btnCombo}>
+                    <Image style={styles.imgCombo} source={require('../../assets/image/asm/home/combo.png')} />
                 </TouchableOpacity>
             </View>
         </ScrollView>
@@ -53,6 +89,15 @@ const Home = () => {
 export default Home
 
 const styles = StyleSheet.create({
+    imgCombo: {
+        width: '100%',
+        borderRadius: 8
+    },
+    btnCombo: {
+        marginVertical: 15,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     txtSeenAll: {
         fontSize: 16,
         fontWeight: '500',
@@ -60,40 +105,15 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
     },
     btnSeenAll: {
-        marginVertical: 30,
-        alignItems: 'flex-end'
-    },
-    txtPrice: {
-        fontSize: 16,
-        fontWeight: '500',
-        color: '#007537'
-    },
-    txtProperty: {
-        fontSize: 14,
-        fontWeight: '400',
-        color: '#7D7B7B'
-    },
-    txtName: {
-        fontSize: 16,
-        fontWeight: '500',
-        color: '#000'
-    },
-    imgBackgroundProduct: {
-        backgroundColor: '#F6F6F6',
-        borderRadius: 8,
-        marginBottom: 4,
-        alignItems: 'center',
-        // width:155,
-        // height:134
-    },
-    btnPlant: {
+        marginBottom: 30,
         marginTop: 15,
-        width: '48%'
+        alignItems: 'flex-end'
     },
     txtBlack: {
         fontSize: 24,
         color: '#000',
-        fontWeight: '500'
+        fontWeight: '500',
+        marginTop: 15
     },
     viewBody: {
         paddingHorizontal: 24,
@@ -123,7 +143,7 @@ const styles = StyleSheet.create({
     viewHead: {
         backgroundColor: '#F6F6F6',
         paddingTop: 64,
-        marginBottom: 30
+        marginBottom: 15
     },
     container: {
         flex: 1,
@@ -157,7 +177,7 @@ var PLANT = [
         property: 'Ưa bóng'
     },
 ]
-var CHAU=[
+var CHAU = [
     {
         id: 1,
         name: 'Planta Trắng ',
