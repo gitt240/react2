@@ -1,10 +1,10 @@
 import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const SectionProduct = ({item}) => {
+const SectionProduct = ({item, onPress}) => {
     const { id, name, image, property } = item
     return (
-        <TouchableOpacity style={styles.btnPlant}>
+        <TouchableOpacity onPress={onPress} style={styles.btnPlant}>
             <View style={styles.imgBackgroundProduct}>
                 <Image source={image} />
             </View>

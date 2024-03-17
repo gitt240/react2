@@ -2,13 +2,12 @@ import { FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, Te
 import React, { useState } from 'react'
 import SectionProduct from './SectionProduct'
 
-const Home = () => {
+const Home = ({navigation}) => {
     const [plant, setPlant] = useState(PLANT)
     const [chau, setChau] = useState(CHAU)
     const [phukien, setPhuKien] = useState(PHUKIEN)
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-            <StatusBar translucent backgroundColor={'#F6F6F6'} />
             <View style={styles.viewHead}>
                 <View style={styles.viewTxtHead}>
                     <Text style={styles.txtHead}>Planta - toả sáng không gian nhà bạn</Text>
@@ -31,6 +30,7 @@ const Home = () => {
                     renderItem={({ item }) => (
                         <SectionProduct
                             item={item}
+                            onPress={()=> navigation.navigate('Detail')}
                         />
                     )}
                     key={item => item.id}

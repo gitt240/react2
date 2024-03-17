@@ -2,18 +2,19 @@ import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from
 import React from 'react'
 import HeaderCustom from './HeaderCustom'
 
-const Detail = () => {
+const Detail = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.viewHead}>
         <HeaderCustom
+        goBack={()=>{navigation.goBack()}}
           leftIcon={require('../../assets/image/asm/detail/back.png')}
           title={'Spider Plant'}
           rightIcon={require('../../assets/image/asm/detail/cart.png')}
         />
       </View>
 
-      <ImageBackground style={styles.imgBackground}>
+      <View style={styles.imgBackground}>
         <TouchableOpacity style={styles.btnLeft}>
           <Image source={require('../../assets/image/asm/detail/left.png')} />
         </TouchableOpacity>
@@ -21,7 +22,7 @@ const Detail = () => {
         <TouchableOpacity style={styles.btnRight}>
           <Image source={require('../../assets/image/asm/detail/right.png')} />
         </TouchableOpacity>
-      </ImageBackground>
+      </View>
 
       <View style={styles.viewInfo}>
         <View style={styles.viewPropertyContainer}>
@@ -70,7 +71,7 @@ const Detail = () => {
             <Text style={styles.txtPriceBlack}>250.000đ</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.btnBuy}>
+        <TouchableOpacity style={styles.btnBuy} onPress={()=>{navigation.navigate('Cart')}}>
           <Text style={styles.txtBuy}>Chọn mua</Text>
         </TouchableOpacity>
       </View>
@@ -172,6 +173,7 @@ const styles = StyleSheet.create({
   },
   viewInfo: {
     paddingHorizontal: 48,
+    paddingTop:40
   },
   btnLeft: {
     position: 'absolute',
@@ -188,7 +190,7 @@ const styles = StyleSheet.create({
   },
   imgBackground: {
     backgroundColor: '#F6F6F6',
-    height: 270,
+    height: '33%',
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
