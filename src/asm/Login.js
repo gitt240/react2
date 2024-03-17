@@ -31,6 +31,7 @@ const Login = ({ navigation }) => {
             setErrorPass('Vui lòng nhập mật khẩu')
             return
         }
+        navigation.navigate('Home')
     }
     return (
         <View style={styles.container}>

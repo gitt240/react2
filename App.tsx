@@ -17,6 +17,7 @@ import Bai3 from './src/Lap/Lab1/Bai3';
 import Detail from './src/asm/Detail';
 import Cart from './src/asm/Cart';
 import ListProduct from './src/asm/ListProduct';
+import Buoi2Animation from './src/baiHoc/Buoi2Animation';
 
 
 
@@ -33,9 +34,10 @@ function App(): React.JSX.Element {
     // <Bai3 />
     // <Detail/>
     // <Cart/>
-    <ListProduct/>
+    // <ListProduct/>
     // <Buoi1/>
     // <StackNavigation/>
+    <Buoi2Animation/>
   );
 }
 
