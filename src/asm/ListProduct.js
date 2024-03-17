@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import HeaderCustom from './HeaderCustom'
 import SectionProduct from './SectionProduct'
 
-const ListProduct = () => {
+const ListProduct = ({navigation}) => {
     const [category, setCategory] = useState(CATEGORY)
     const [selectedCategory, setSelectedCategory] = useState(1)
     const [plant, setPlant] = useState(PLANT)
@@ -22,6 +22,7 @@ const ListProduct = () => {
                 leftIcon={require('../../assets/image/asm/together/back.png')}
                 title={'Cây Trồng'}
                 rightIcon={require('../../assets/image/asm/together/cart.png')}
+                goBack={()=>{navigation.goBack()}}
             />
 
             <View style={styles.viewCate}>

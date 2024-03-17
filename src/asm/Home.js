@@ -2,7 +2,7 @@ import { FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, Te
 import React, { useState } from 'react'
 import SectionProduct from './SectionProduct'
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
     const [plant, setPlant] = useState(PLANT)
     const [chau, setChau] = useState(CHAU)
     const [phukien, setPhuKien] = useState(PHUKIEN)
@@ -30,13 +30,13 @@ const Home = ({navigation}) => {
                     renderItem={({ item }) => (
                         <SectionProduct
                             item={item}
-                            onPress={()=> navigation.navigate('Detail')}
+                            onPress={() => navigation.navigate('Detail')}
                         />
                     )}
                     key={item => item.id}
                 />
 
-                <TouchableOpacity style={styles.btnSeenAll}>
+                <TouchableOpacity style={styles.btnSeenAll} onPress={() => { navigation.navigate('ListProduct') }}>
                     <Text style={styles.txtSeenAll}>Xem thêm Cây trồng</Text>
                 </TouchableOpacity>
 
