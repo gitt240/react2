@@ -18,6 +18,7 @@ import Detail from './src/asm/Detail';
 import Cart from './src/asm/Cart';
 import ListProduct from './src/asm/ListProduct';
 import Buoi2Animation from './src/baiHoc/Buoi2Animation';
+import UploadImage from './src/baiHoc/UploadImage';
 
 
 
@@ -37,7 +38,8 @@ function App(): React.JSX.Element {
     // <ListProduct/>
     // <Buoi1/>
     // <StackNavigation/>
-    <Buoi2Animation/>
+    // <Buoi2Animation/>
+    <UploadImage/>
   );
 }
 
