@@ -19,8 +19,10 @@ import Cart from './src/asm/Cart';
 import ListProduct from './src/asm/ListProduct';
 import Buoi2Animation from './src/baiHoc/Buoi2Animation';
 import UploadImage from './src/baiHoc/UploadImage';
-
-
+import ReduxToolKitDemo from './src/baiHoc/ReduxToolKitDemo';
+import { Provider } from 'react-redux';
+import store from './src/baiHoc/redux/Store';
+import Lab2Anim6 from './src/Lap/Lab2/Lab2Anim6';
 
 function App(): React.JSX.Element {
 
@@ -39,7 +41,11 @@ function App(): React.JSX.Element {
     // <Buoi1/>
     // <StackNavigation/>
     // <Buoi2Animation/>
-    <UploadImage/>
+    <Lab2Anim6/>
+    // <UploadImage/>
+    // <Provider store={store}>
+    //   <ReduxToolKitDemo />
+    // </Provider>
   );
 }
 
