@@ -22,6 +22,8 @@ import store from './src/baiHoc/redux/Store';
 import Lab2Anim6 from './src/Lap/Lab2/Lab2Anim6';
 import Bai1 from './src/Lap/Lab4/Bai1';
 import Bai2TrackPlayer from './src/Lap/Lab4/Bai2TrackPlayer';
+import AppStore from './demoSlice/redux/Store'
+import Screen from './demoSlice/Screen';
 
 function App(): React.JSX.Element {
 
@@ -42,11 +44,11 @@ function App(): React.JSX.Element {
     // <Buoi2Animation/>
     // <Lab2Anim6/>
     // <Bai1/>
-    <Bai2TrackPlayer/>
+    // <Bai2TrackPlayer/>
     // <UploadImage/>
-    // <Provider store={store}>
-    //   <ReduxToolKitDemo />
-    // </Provider>
+    <Provider store={AppStore}>
+      <Screen />
+    </Provider>
   );
 }
 
