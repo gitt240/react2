@@ -1,6 +1,6 @@
 import { FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import SectionProduct from './SectionProduct'
+import SectionProduct from '../../SectionProduct'
 
 const Home = ({ navigation }) => {
     const [plant, setPlant] = useState(PLANT)
@@ -12,13 +12,13 @@ const Home = ({ navigation }) => {
                 <View style={styles.viewTxtHead}>
                     <Text style={styles.txtHead}>Planta - toả sáng không gian nhà bạn</Text>
                     <TouchableOpacity style={styles.btnXemThem}>
-                        <Image source={require('../../assets/image/asm/home/xemthem.png')} />
+                        <Image source={require('../../../../assets/image/asm/home/xemthem.png')} />
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.btnCart}>
-                    <Image source={require('../../assets/image/asm/home/cart.png')} />
+                    <Image source={require('../../../../assets/image/asm/home/cart.png')} />
                 </TouchableOpacity>
-                <Image style={styles.imgBackground} source={require('../../assets/image/asm/home/background.png')} />
+                <Image style={styles.imgBackground} source={require('../../../../assets/image/asm/home/background.png')} />
             </View>
 
             <View style={styles.viewBody}>
@@ -79,7 +79,7 @@ const Home = ({ navigation }) => {
                 {/*  */}
                 <Text style={styles.txtBlack}>Combo chăm sóc (mới)</Text>
                 <TouchableOpacity style={styles.btnCombo}>
-                    <Image style={styles.imgCombo} source={require('../../assets/image/asm/home/combo.png')} />
+                    <Image style={styles.imgCombo} source={require('../../../../assets/image/asm/home/combo.png')} />
                 </TouchableOpacity>
             </View>
         </ScrollView>
@@ -155,25 +155,25 @@ var PLANT = [
     {
         id: 1,
         name: 'Spider Plant',
-        image: require('../../assets/image/asm/home/p1.png'),
+        image: require('../../../../assets/image/asm/home/p1.png'),
         property: 'Ưa bóng'
     },
     {
         id: 2,
         name: 'Song of India',
-        image: require('../../assets/image/asm/home/p2.png'),
+        image: require('../../../../assets/image/asm/home/p2.png'),
         property: 'Ưa sáng'
     },
     {
         id: 3,
         name: 'Pink Anthurium',
-        image: require('../../assets/image/asm/home/p3.png'),
+        image: require('../../../../assets/image/asm/home/p3.png'),
         property: 'Ưa bóng'
     },
     {
         id: 4,
         name: 'Black Love Anthurium',
-        image: require('../../assets/image/asm/home/p4.png'),
+        image: require('../../../../assets/image/asm/home/p4.png'),
         property: 'Ưa bóng'
     },
 ]
@@ -181,22 +181,22 @@ var CHAU = [
     {
         id: 1,
         name: 'Planta Trắng ',
-        image: require('../../assets/image/asm/home/c1.png'),
+        image: require('../../../../assets/image/asm/home/c1.png'),
     },
     {
         id: 2,
         name: 'Planta Lemon Balm',
-        image: require('../../assets/image/asm/home/c2.png'),
+        image: require('../../../../assets/image/asm/home/c2.png'),
     },
     {
         id: 3,
         name: 'Planta Rosewood',
-        image: require('../../assets/image/asm/home/c3.png'),
+        image: require('../../../../assets/image/asm/home/c3.png'),
     },
     {
         id: 4,
         name: 'Planta Dove Grey',
-        image: require('../../assets/image/asm/home/c4.png'),
+        image: require('../../../../assets/image/asm/home/c4.png'),
     },
 ]
 
@@ -204,21 +204,21 @@ var PHUKIEN = [
     {
         id: 1,
         name: 'Bình tưới CB2 SAIC',
-        image: require('../../assets/image/asm/home/pk1.png'),
+        image: require('../../../../assets/image/asm/home/pk1.png'),
     },
     {
         id: 2,
         name: 'Bình xịt Xiaoda ',
-        image: require('../../assets/image/asm/home/pk2.png'),
+        image: require('../../../../assets/image/asm/home/pk2.png'),
     },
     {
         id: 3,
         name: 'Bộ cuốc xẻng mini',
-        image: require('../../assets/image/asm/home/pk3.png'),
+        image: require('../../../../assets/image/asm/home/pk3.png'),
     },
     {
         id: 4,
         name: 'Giá đỡ Finn Terrazzo ',
-        image: require('../../assets/image/asm/home/pk4.png'),
+        image: require('../../../../assets/image/asm/home/pk4.png'),
     },
 ]

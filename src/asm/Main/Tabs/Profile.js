@@ -1,13 +1,13 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import HeaderCustom from './HeaderCustom'
+import HeaderCustom from '../../HeaderCustom'
 
-const Profile = () => {
+const Profile = ({navigation}) => {
     return (
         <View style={styles.container}>
             <HeaderCustom title={'Profile'} />
             <View style={styles.viewProfile}>
-                <Image style={styles.imgAvatar} source={require('../../assets/image/asm/profile/avatar.png')} />
+                <Image style={styles.imgAvatar} source={require('../../../../assets/image/asm/profile/avatar.png')} />
                 <View style={styles.viewInfor}>
                     <Text style={styles.txtBlack}>Trần Minh Trí</Text>
                     <Text style={styles.txtEmail}>tranminhtri@gmail.com</Text>
@@ -15,13 +15,13 @@ const Profile = () => {
             </View>
 
             <Text style={styles.txtTitle}>Chung</Text>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('EditProfile')}}>
                 <Text style={styles.txtBlack}>Chỉnh sửa thông tin</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btn}>
                 <Text style={styles.txtBlack}>Cẩm nang trồng cây</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('History')}}>
                 <Text style={styles.txtBlack}>Lịch sử giao dịch</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btn}>

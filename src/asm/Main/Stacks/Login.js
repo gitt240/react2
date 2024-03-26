@@ -1,15 +1,11 @@
 import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 
-const Register = ({ navigation }) => {
+const Login = ({ navigation }) => {
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
-    const [name, setName] = useState('')
-    const [phone, setPhone] = useState('')
     const [errorEmail, setErrorEmail] = useState('')
     const [errorPass, setErrorPass] = useState('')
-    const [errorName, setErrorName] = useState('')
-    const [errorPhone, setErrorPhone] = useState('')
 
     const changeEmail = (data) => {
         setEmail(data)
@@ -21,95 +17,83 @@ const Register = ({ navigation }) => {
         setErrorPass('')
     }
 
-    const changeName = (data) => {
-        setName(data)
-        setErrorName('')
-    }
-
-    const changePhone = (data) => {
-        setPhone(data)
-        setErrorPhone('')
-    }
-
     const checkEmpty = () => {
-        if (!name) {
-            setErrorName('Họ tên không được để trống')
+        if (!email && !pass) {
+            setErrorEmail('Vui lòng nhập email')
+            setErrorPass('Vui lòng nhập mật khẩu')
             return
         }
         if (!email) {
             setErrorEmail('Vui lòng nhập email')
             return
         }
-        if (!phone) {
-            setErrorPhone('Số điện thoại không được để trống')
-        }
         if (!pass) {
             setErrorPass('Vui lòng nhập mật khẩu')
             return
         }
-
+        navigation.navigate('Home')
     }
     return (
         <View style={styles.container}>
-            {/* <ImageBackground style={styles.imgBackground} source={require('../../assets/image/asm/login_register/background2.png')} >
-                <TouchableOpacity style={styles.btnBack}>
-                    <Image source={require('../../assets/image/asm/login_register/back.png')} />
-                </TouchableOpacity>
+            {/* <ImageBackground style={styles.imgBackground} source={require('../../assets/image/asm/login_register/background.png')} >
+                
             </ImageBackground> */}
-
-            <Image style={styles.imgBackground} source={require('../../assets/image/asm/login_register/background2.png')} />
+            <View>
+                <Image style={styles.imgBackground} source={require('../../../../assets/image/asm/login_register/background.png')} />
+                <TouchableOpacity style={styles.btnBack}>
+                    <Image source={require('../../../../assets/image/asm/login_register/back.png')} />
+                </TouchableOpacity>
+            </View>
 
             <View style={styles.viewCotainer}>
-                <Text style={styles.txtHead}>Đăng ký</Text>
-                <Text style={styles.txtSubHead}>Tạo tài khoản</Text>
+                <Text style={styles.txtHead}>Chào mừng bạn</Text>
+                <Text style={styles.txtSubHead}>Đăng nhập tài khoản</Text>
                 <View style={styles.viewInput}>
-                    <TextInput style={[styles.input, errorName ? styles.inputError : styles.input]} placeholder='Họ tên' onChangeText={(text) => { changeName(text) }} />
-                    {errorName && <Text style={styles.txtError}>{errorName}</Text>}
-                </View>
-                <View style={styles.viewInput}>
-                    <TextInput style={[styles.input, errorEmail ? styles.inputError : styles.input]} placeholder='E-mail' onChangeText={(text) => { changeEmail(text) }} />
+                    <TextInput style={[styles.input, errorEmail ? styles.inputError : styles.input]} placeholder='Nhập email hoặc số điện thoại' onChangeText={(text) => { changeEmail(text) }} />
                     {errorEmail && <Text style={styles.txtError}>{errorEmail}</Text>}
-                </View>
-                <View style={styles.viewInput}>
-                    <TextInput style={[styles.input, errorPhone ? styles.inputError : styles.input]} placeholder='Số điện thoại' onChangeText={(text) => { changePhone(text) }} />
-                    {errorPhone && <Text style={styles.txtError}>{errorPhone}</Text>}
                 </View>
                 <View style={styles.viewInput}>
                     <View style={styles.viewPass}>
                         <TextInput style={[styles.input, errorPass ? styles.inputError : styles.input]} placeholder='Mật khẩu' onChangeText={(text) => { changePass(text) }} />
                         <TouchableOpacity style={styles.btnEye}>
-                            <Image source={require('../../assets/image/asm/login_register/hiden_pass.png')} />
+                            <Image source={require('../../../../assets/image/asm/login_register/hiden_pass.png')} />
                         </TouchableOpacity>
                     </View>
                     {errorPass && <Text style={styles.txtError}>{errorPass}</Text>}
                 </View>
 
-                <Text style={styles.txtRule}>Để đăng ký tài khoản, bạn đồng ý <Text style={styles.txtGreen}>Terms & Conditions</Text> and <Text style={styles.txtGreen}>Privacy Policy</Text></Text>
+                <View style={styles.viewRememberForget}>
+                    <View style={styles.viewRemember}>
+                        <Image source={require('../../../../assets/image/asm/login_register/not_remember.png')} />
+                        <Text style={styles.txtRemem}>Nhớ tài khoản</Text>
+                    </View>
+                    <Text style={styles.txtFoget}>Quên mật khẩu ?</Text>
+                </View>
 
-                <TouchableOpacity style={styles.btnRegister} onPress={checkEmpty}>
-                    <Text style={styles.txtRegister}>Đăng ký</Text>
+                <TouchableOpacity style={styles.btnLogin} onPress={checkEmpty}>
+                    <Text style={styles.txtLogin}>Đăng nhập</Text>
                 </TouchableOpacity>
 
                 <View style={styles.viewOr}>
-                    <Image source={require('../../assets/image/asm/login_register/line.png')} />
+                    <Image source={require('../../../../assets/image/asm/login_register/line.png')} />
                     <Text style={styles.txtOr}>Hoặc</Text>
-                    <Image source={require('../../assets/image/asm/login_register/line.png')} />
+                    <Image source={require('../../../../assets/image/asm/login_register/line.png')} />
                 </View>
 
 
                 <View style={styles.viewSocial}>
                     <TouchableOpacity style={styles.btnGoogle}>
-                        <Image source={require('../../assets/image/asm/login_register/google.png')} />
+                        <Image source={require('../../../../assets/image/asm/login_register/google.png')} />
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image source={require('../../assets/image/asm/login_register/facebook.png')} />
+                        <Image source={require('../../../../assets/image/asm/login_register/facebook.png')} />
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.viewRegister}>
-                    <Text style={styles.txtBlack}>Tôi đã có tài khoản</Text>
-                    <TouchableOpacity onPress={() => { navigation.navigate('Login') }}>
-                        <Text style={styles.txtLogin}>Đăng nhập</Text>
+                    <Text style={styles.txtBlack}>Bạn không có tài khoản</Text>
+                    <TouchableOpacity onPress={() => { navigation.navigate('Register') }}>
+                        <Text style={styles.txtRegister}>Tạo tài khoán</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -117,7 +101,7 @@ const Register = ({ navigation }) => {
     )
 }
 
-export default Register
+export default Login
 
 const styles = StyleSheet.create({
     viewInput: {
@@ -137,7 +121,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    txtLogin: {
+    txtRegister: {
         fontSize: 12,
         fontFamily: 'Poppins',
         color: '#009245',
@@ -157,7 +141,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 25
+        marginVertical: 30
     },
     txtOr: {
         fontSize: 12,
@@ -170,13 +154,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    txtRegister: {
+    txtLogin: {
         fontSize: 20,
         fontFamily: 'Poppins',
         fontWeight: 'bold',
         color: '#fff',
     },
-    btnRegister: {
+    btnLogin: {
         backgroundColor: '#4CAF50',
         borderRadius: 15,
         justifyContent: 'center',
@@ -184,18 +168,29 @@ const styles = StyleSheet.create({
         height: 50,
         marginBottom: 20
     },
-    txtGreen: {
-        color: '#009245',
-        textDecorationLine: 'underline'
-    },
-    txtRule: {
+    txtFoget: {
         fontSize: 12,
-        color: '#000',
         fontFamily: 'Poppins',
+        color: '#009245',
+        fontWeight: 'bold'
+    },
+    txtRemem: {
+        fontSize: 12,
+        fontFamily: 'Poppins',
+        color: '#949090',
+        marginLeft: 5,
+        fontWeight: 'bold'
+    },
+    viewRemember: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    viewRememberForget: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         marginBottom: 20,
-        marginTop: 10,
-        textAlign: 'center',
-        marginHorizontal: 25
+        marginTop: 3
     },
     viewPass: {
         flexDirection: 'row'
@@ -217,15 +212,15 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Poppins',
         color: '#000',
-        textAlign: 'center',
-        marginBottom: 12
+        marginBottom: 20,
+        textAlign: 'center'
     },
     txtHead: {
         fontSize: 30,
         fontFamily: 'Poppins-Bold',
         // fontWeight: 'bold',
         color: '#000',
-        marginTop: 4,
+        marginTop: 10,
         textAlign: 'center'
     },
     viewCotainer: {
@@ -239,8 +234,6 @@ const styles = StyleSheet.create({
     },
     imgBackground: {
         width: '100%',
-        height: 220,
-        objectFit: 'cover'
     },
     container: {
         flex: 1,
