@@ -1,8 +1,8 @@
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import HeaderCustom from './HeaderCustom'
+import HeaderCustom from '../../HeaderCustom'
 
-const Cart = () => {
+const Cart = ({ navigation }) => {
     const [data, setData] = useState(CART)
 
     const renderItem = ({ item }) => {
@@ -10,7 +10,7 @@ const Cart = () => {
         return (
             <View style={styles.viewProduct}>
                 <TouchableOpacity>
-                    <Image source={require('../../assets/image/asm/cart/checked.png')} />
+                    <Image source={require('../../../../assets/image/asm/cart/checked.png')} />
                 </TouchableOpacity>
                 <View style={styles.viewImgProduct}>
                     <Image style={styles.imgProduct} source={img} />
@@ -22,11 +22,11 @@ const Cart = () => {
                     <View style={styles.viewRow}>
                         <View style={styles.viewQuantity}>
                             <TouchableOpacity>
-                                <Image style={styles.imgQuantity} source={require('../../assets/image/asm/together/reduce.png')} />
+                                <Image style={styles.imgQuantity} source={require('../../../../assets/image/asm/together/reduce.png')} />
                             </TouchableOpacity>
                             <Text style={styles.txtQuantity}>1</Text>
                             <TouchableOpacity>
-                                <Image style={styles.imgQuantity} source={require('../../assets/image/asm/together/increase.png')} />
+                                <Image style={styles.imgQuantity} source={require('../../../../assets/image/asm/together/increase.png')} />
                             </TouchableOpacity>
                         </View>
                         <Text style={styles.txtRemove}>Xoá</Text>
@@ -38,9 +38,10 @@ const Cart = () => {
     return (
         <View style={styles.container}>
             <HeaderCustom
-                leftIcon={require('../../assets/image/asm/together/back.png')}
+                leftIcon={require('../../../../assets/image/asm/together/back.png')}
                 title={'Giỏ hàng'}
-                rightIcon={require('../../assets/image/asm/together/trash.png')}
+                rightIcon={require('../../../../assets/image/asm/together/trash.png')}
+                goBack={() => navigation.goBack()}
             />
 
             <FlatList
@@ -54,9 +55,9 @@ const Cart = () => {
                 <Text style={styles.txtTotalPrice}>500.000đ</Text>
             </View>
 
-            <TouchableOpacity style={styles.btnPay}>
+            <TouchableOpacity style={styles.btnPay} onPress={() => { navigation.navigate('Payment') }}>
                 <Text style={styles.txtPay}>Tiến hành thanh toán</Text>
-                <Image source={require('../../assets/image/asm/cart/right.png')} />
+                <Image source={require('../../../../assets/image/asm/cart/right.png')} />
             </TouchableOpacity>
         </View>
     )
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
     viewQuantity: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight:40
+        marginRight: 40
     },
     viewRow: {
         flexDirection: 'row',
@@ -152,6 +153,6 @@ var CART = [
     {
         id: 1,
         name: 'Spider Plant',
-        img: require('../../assets/image/asm/home/p1.png')
+        img: require('../../../../assets/image/asm/home/p1.png')
     }
 ]

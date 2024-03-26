@@ -1,26 +1,26 @@
 import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import HeaderCustom from './HeaderCustom'
+import HeaderCustom from '../../HeaderCustom'
 
-const Detail = ({navigation}) => {
+const Detail = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.viewHead}>
         <HeaderCustom
-        goBack={()=>{navigation.goBack()}}
-          leftIcon={require('../../assets/image/asm/detail/back.png')}
+          goBack={() => { navigation.goBack() }}
+          leftIcon={require('../../../../assets/image/asm/detail/back.png')}
           title={'Spider Plant'}
-          rightIcon={require('../../assets/image/asm/detail/cart.png')}
+          rightIcon={require('../../../../assets/image/asm/detail/cart.png')}
         />
       </View>
 
       <View style={styles.imgBackground}>
         <TouchableOpacity style={styles.btnLeft}>
-          <Image source={require('../../assets/image/asm/detail/left.png')} />
+          <Image source={require('../../../../assets/image/asm/detail/left.png')} />
         </TouchableOpacity>
-        <Image style={styles.imgProduct} source={require('../../assets/image/asm/home/p1.png')} />
+        <Image style={styles.imgProduct} source={require('../../../../assets/image/asm/home/p1.png')} />
         <TouchableOpacity style={styles.btnRight}>
-          <Image source={require('../../assets/image/asm/detail/right.png')} />
+          <Image source={require('../../../../assets/image/asm/detail/right.png')} />
         </TouchableOpacity>
       </View>
 
@@ -57,11 +57,11 @@ const Detail = ({navigation}) => {
             <Text style={styles.txtOpacity}>Đã chọn 1 sản phẩm</Text>
             <View style={styles.viewQuantity}>
               <TouchableOpacity>
-                <Image source={require('../../assets/image/asm/detail/reduce.png')} />
+                <Image source={require('../../../../assets/image/asm/detail/reduce.png')} />
               </TouchableOpacity>
               <Text style={styles.txtQuantity}>1</Text>
               <TouchableOpacity>
-                <Image source={require('../../assets/image/asm/detail/increase.png')} />
+                <Image source={require('../../../../assets/image/asm/detail/increase.png')} />
               </TouchableOpacity>
             </View>
           </View>
@@ -71,7 +71,7 @@ const Detail = ({navigation}) => {
             <Text style={styles.txtPriceBlack}>250.000đ</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.btnBuy} onPress={()=>{navigation.navigate('Cart')}}>
+        <TouchableOpacity style={styles.btnBuy} onPress={() => { navigation.navigate('Cart') }}>
           <Text style={styles.txtBuy}>Chọn mua</Text>
         </TouchableOpacity>
       </View>
@@ -83,9 +83,9 @@ const Detail = ({navigation}) => {
 export default Detail
 
 const styles = StyleSheet.create({
-  viewBuy:{
-    paddingHorizontal:24,
-    marginTop:15
+  viewBuy: {
+    paddingHorizontal: 24,
+    marginTop: 15
   },
   txtBuy: {
     fontSize: 16,
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
   },
   viewInfo: {
     paddingHorizontal: 48,
-    paddingTop:40
+    paddingTop: 40
   },
   btnLeft: {
     position: 'absolute',

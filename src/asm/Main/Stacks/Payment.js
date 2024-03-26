@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, TextInput, Image,TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import HeaderCustom from './HeaderCustom'
+import HeaderCustom from '../../HeaderCustom'
 
-const Payment = () => {
+const Payment = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <HeaderCustom leftIcon={require('../../assets/image/asm/together/back.png')} title={'Thanh toán'} />
+            <HeaderCustom leftIcon={require('../../../../assets/image/asm/together/back.png')} title={'Thanh toán'} goBack={() => navigation.goBack()} />
             <View style={styles.viewBody}>
                 <Text style={styles.txtTitle}>Thông tin khách hàng</Text>
                 <TextInput style={styles.inputInfor} placeholder='Họ và tên' />
@@ -19,7 +19,7 @@ const Payment = () => {
                         <Text style={styles.txtGreen}>Giao hàng Nhanh - 15.000đ</Text>
                         <Text style={styles.txtGrey}>Dự kiến giao hàng 5-7/9</Text>
                     </View>
-                    <Image source={require('../../assets/image/asm/payment/check.png')} />
+                    <Image source={require('../../../../assets/image/asm/payment/check.png')} />
                 </View>
 
                 <View style={styles.viewRow}>
@@ -27,13 +27,13 @@ const Payment = () => {
                         <Text style={styles.txtBlack}>Giao hàng COD - 20.000đ</Text>
                         <Text style={styles.txtGrey}>Dự kiến giao hàng 4-8/9</Text>
                     </View>
-                    {/* <Image source={require('../../assets/image/asm/payment/check.png')}/> */}
+                    {/* <Image source={require('../../../../assets/image/asm/payment/check.png')}/> */}
                 </View>
 
                 <Text style={styles.txtTitle}>Hình thức thanh toán</Text>
                 <View style={styles.viewRow}>
                     <Text style={styles.txtGreen}>Thẻ VISA/MASTERCARD</Text>
-                    <Image source={require('../../assets/image/asm/payment/check.png')} />
+                    <Image source={require('../../../../assets/image/asm/payment/check.png')} />
                 </View>
 
                 <View style={styles.viewRow}>
@@ -41,7 +41,7 @@ const Payment = () => {
                 </View>
             </View>
 
-            <View  style={styles.viewFooter}>
+            <View style={styles.viewFooter}>
                 <View style={styles.viewRowFooter}>
                     <Text style={styles.txtGrey}>Tạm tính</Text>
                     <Text style={styles.txtBlack}>500.000đ</Text>
@@ -55,8 +55,8 @@ const Payment = () => {
                     <Text style={styles.txtGreen}>515.000đ</Text>
                 </View>
 
-                <TouchableOpacity  style={styles.btnPay}>
-                    <Text  style={styles.txtPay}>Tiếp tục</Text>
+                <TouchableOpacity style={styles.btnPay}>
+                    <Text style={styles.txtPay}>Tiếp tục</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -66,26 +66,26 @@ const Payment = () => {
 export default Payment
 
 const styles = StyleSheet.create({
-    txtPay:{
-        fontSize:16,
-        color:'#fff'
+    txtPay: {
+        fontSize: 16,
+        color: '#fff'
     },
-    btnPay:{
-        height:50,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#007537',
-        marginTop:10,
-        borderRadius:8
+    btnPay: {
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#007537',
+        marginTop: 10,
+        borderRadius: 8
     },
     viewRowFooter: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop:4
+        marginTop: 4
     },
     viewFooter: {
-        marginTop:15
+        marginTop: 15
     },
     txtBlack: {
         color: '#000',

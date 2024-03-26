@@ -1,9 +1,9 @@
 import { FlatList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import HeaderCustom from './HeaderCustom'
-import SectionProduct from './SectionProduct'
+import HeaderCustom from '../../HeaderCustom'
+import SectionProduct from '../../SectionProduct'
 
-const ListProduct = ({navigation}) => {
+const ListProduct = ({ navigation }) => {
     const [category, setCategory] = useState(CATEGORY)
     const [selectedCategory, setSelectedCategory] = useState(1)
     const [plant, setPlant] = useState(PLANT)
@@ -19,10 +19,10 @@ const ListProduct = ({navigation}) => {
     return (
         <View style={styles.container}>
             <HeaderCustom
-                leftIcon={require('../../assets/image/asm/together/back.png')}
+                leftIcon={require('../../../../assets/image/asm/together/back.png')}
                 title={'Cây Trồng'}
-                rightIcon={require('../../assets/image/asm/together/cart.png')}
-                goBack={()=>{navigation.goBack()}}
+                rightIcon={require('../../../../assets/image/asm/together/cart.png')}
+                goBack={() => { navigation.goBack() }}
             />
 
             <View style={styles.viewCate}>
@@ -106,37 +106,37 @@ var PLANT = [
     {
         id: 1,
         name: 'Spider Plant',
-        image: require('../../assets/image/asm/home/p1.png'),
+        image: require('../../../../assets/image/asm/home/p1.png'),
         property: 'Ưa bóng'
     },
     {
         id: 2,
         name: 'Song of India',
-        image: require('../../assets/image/asm/home/p2.png'),
+        image: require('../../../../assets/image/asm/home/p2.png'),
         property: 'Ưa sáng'
     },
     {
         id: 3,
         name: 'Pink Anthurium',
-        image: require('../../assets/image/asm/home/p3.png'),
+        image: require('../../../../assets/image/asm/home/p3.png'),
         property: 'Ưa bóng'
     },
     {
         id: 4,
         name: 'Black Love Anthurium',
-        image: require('../../assets/image/asm/home/p4.png'),
+        image: require('../../../../assets/image/asm/home/p4.png'),
         property: 'Ưa bóng'
     },
     {
         id: 5,
         name: 'Grey Star Calarthea  ',
-        image: require('../../assets/image/asm/home/p5.png'),
+        image: require('../../../../assets/image/asm/home/p5.png'),
         property: 'Ưa sáng'
     },
     {
         id: 6,
         name: 'Banana Plant  ',
-        image: require('../../assets/image/asm/home/p6.png'),
+        image: require('../../../../assets/image/asm/home/p6.png'),
         property: 'Ưa sáng'
     },
 ]
