@@ -24,6 +24,8 @@ import Bai1 from './src/Lap/Lab4/Bai1';
 import Bai2TrackPlayer from './src/Lap/Lab4/Bai2TrackPlayer';
 import AppStore from './demoSlice/redux/Store'
 import Screen from './demoSlice/Screen';
+import Payment from './src/asm/Payment';
+import Profile from './src/asm/Profile';
 
 function App(): React.JSX.Element {
 
@@ -46,9 +48,11 @@ function App(): React.JSX.Element {
     // <Bai1/>
     // <Bai2TrackPlayer/>
     // <UploadImage/>
-    <Provider store={AppStore}>
-      <Screen />
-    </Provider>
+    // <Provider store={AppStore}>
+    //   <Screen />
+    // </Provider>
+    // <Payment/>
+    <Profile/>
   );
 }
 
