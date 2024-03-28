@@ -18,8 +18,6 @@ const Tab = createBottomTabNavigator()
 const MainStackNavigation = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {/* <Stack.Screen name='Login' component={Login} />
-            <Stack.Screen name='Register' component={Register} /> */}
             <Stack.Screen name='MainTap' component={MainTabNavigation} />
             <Stack.Screen name='Detail' component={Detail} />
             <Stack.Screen name='Cart' component={Cart} />
