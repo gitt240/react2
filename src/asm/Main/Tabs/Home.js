@@ -27,13 +27,14 @@ const Home = ({ navigation }) => {
                     numColumns={2}
                     columnWrapperStyle={{ justifyContent: 'space-between' }}
                     data={plant}
-                    renderItem={({ item }) => (
+                    renderItem={({ item, index }) => (
                         <SectionProduct
                             item={item}
+                            // index={index}
                             onPress={() => navigation.navigate('Detail')}
                         />
                     )}
-                    key={item => item.id}
+                // key={item => item.id}
                 />
 
                 <TouchableOpacity style={styles.btnSeenAll} onPress={() => { navigation.navigate('ListProduct') }}>
@@ -46,12 +47,13 @@ const Home = ({ navigation }) => {
                     numColumns={2}
                     columnWrapperStyle={{ justifyContent: 'space-between' }}
                     data={chau}
-                    renderItem={({ item }) => (
+                    renderItem={({ item, index }) => (
                         <SectionProduct
                             item={item}
+                        // index={index}
                         />
                     )}
-                    key={item => item.id}
+                // key={item => item.id}
                 />
 
                 <TouchableOpacity style={styles.btnSeenAll}>
@@ -64,12 +66,13 @@ const Home = ({ navigation }) => {
                     numColumns={2}
                     columnWrapperStyle={{ justifyContent: 'space-between' }}
                     data={phukien}
-                    renderItem={({ item }) => (
+                    renderItem={({ item, index }) => (
                         <SectionProduct
                             item={item}
+                        // index={index}
                         />
                     )}
-                    key={item => item.id}
+                // key={item => item.id}
                 />
 
                 <TouchableOpacity style={styles.btnSeenAll}>
