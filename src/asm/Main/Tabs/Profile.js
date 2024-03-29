@@ -24,7 +24,7 @@ const Profile = ({navigation}) => {
             <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('History')}}>
                 <Text style={styles.txtBlack}>Lịch sử giao dịch</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('QAA')}}>
                 <Text style={styles.txtBlack}> Q & A</Text>
             </TouchableOpacity>
 
