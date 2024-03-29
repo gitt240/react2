@@ -12,6 +12,7 @@ import History from './Stacks/History'
 import Detail from './Stacks/Detail'
 import Cart from './Stacks/Cart'
 import ListProduct from './Stacks/ListProduct'
+import QAA from './Stacks/QAA'
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
@@ -25,6 +26,7 @@ const MainStackNavigation = () => {
             <Stack.Screen name='EditProfile' component={EditProfile} />
             <Stack.Screen name='Payment' component={Payment} />
             <Stack.Screen name='History' component={History} />
+            <Stack.Screen name='QAA' component={QAA} />
         </Stack.Navigator>
     )
 }

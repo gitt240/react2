@@ -15,7 +15,7 @@ const Home = ({ navigation }) => {
                         <Image source={require('../../../../assets/image/asm/home/xemthem.png')} />
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.btnCart}>
+                <TouchableOpacity style={styles.btnCart}  onPress={()=>{navigation.navigate('Cart')}}>
                     <Image source={require('../../../../assets/image/asm/home/cart.png')} />
                 </TouchableOpacity>
                 <Image style={styles.imgBackground} source={require('../../../../assets/image/asm/home/background.png')} />

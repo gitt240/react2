@@ -8,6 +8,7 @@ import {
 import { Provider } from 'react-redux';
 import store from './src/asm/Redux/Store';
 import AppNavigation from './src/asm/AppNavigation';
+import QAA from './src/asm/Main/Stacks/QAA';
 
 function App(): React.JSX.Element {
 

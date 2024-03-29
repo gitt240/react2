@@ -55,7 +55,7 @@ const Payment = ({ navigation }) => {
                     <Text style={styles.txtGreen}>515.000đ</Text>
                 </View>
 
-                <TouchableOpacity style={styles.btnPay}>
+                <TouchableOpacity style={styles.btnPay} onPress={() => { navigation.navigate('Home') }}>
                     <Text style={styles.txtPay}>Tiếp tục</Text>
                 </TouchableOpacity>
             </View>
