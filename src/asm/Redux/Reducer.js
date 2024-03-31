@@ -12,18 +12,26 @@ const appSlice = createSlice({
     initialState,
     reducers: {
         addItemToCart: (state, action) => {
-            state.cart=[...state.cart, action.payload]
+            const index = state.cart.findIndex(item => item._id.toString() == action.payload._id.toString())
+            if (index >= 0) {
+                state.cart[index].quantity += action.payload.quantity
+            } else {
+                state.cart = [...state.cart, action.payload]
+            }
         },
+        logout: (state, action) => {
+            state.user = null
+        }
     },
     extraReducers: (builder) => {
-        builder.addCase(login.fulfilled,(state, action)=>{
+        builder.addCase(login.fulfilled, (state, action) => {
             state.user = action.payload
         })
-        builder.addCase(login.rejected,(state, action)=>{
+        builder.addCase(login.rejected, (state, action) => {
             console.log('...rejected....');
         })
     }
 });
 
-export const { addItemToCart } = appSlice.actions;
+export const { addItemToCart, logout } = appSlice.actions;
 export default appSlice.reducer;

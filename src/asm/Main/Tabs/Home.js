@@ -1,11 +1,25 @@
 import { FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SectionProduct from '../../SectionProduct'
+import AxiosInstance from '../../helpers/AxiosInstance'
 
 const Home = ({ navigation }) => {
+    const [products, setProducts] = useState([])
     const [plant, setPlant] = useState(PLANT)
     const [chau, setChau] = useState(CHAU)
     const [phukien, setPhuKien] = useState(PHUKIEN)
+
+    const getProduct = async () => {
+        try {
+            const response = await AxiosInstance().get('./products')
+            setProducts(response.data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        getProduct()
+    }, [])
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
             <View style={styles.viewHead}>
@@ -15,7 +29,7 @@ const Home = ({ navigation }) => {
                         <Image source={require('../../../../assets/image/asm/home/xemthem.png')} />
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.btnCart}  onPress={()=>{navigation.navigate('Cart')}}>
+                <TouchableOpacity style={styles.btnCart} onPress={() => { navigation.navigate('Cart') }}>
                     <Image source={require('../../../../assets/image/asm/home/cart.png')} />
                 </TouchableOpacity>
                 <Image style={styles.imgBackground} source={require('../../../../assets/image/asm/home/background.png')} />
@@ -26,15 +40,15 @@ const Home = ({ navigation }) => {
                 <FlatList
                     numColumns={2}
                     columnWrapperStyle={{ justifyContent: 'space-between' }}
-                    data={plant}
+                    data={products}
                     renderItem={({ item, index }) => (
                         <SectionProduct
                             item={item}
                             // index={index}
-                            onPress={() => navigation.navigate('Detail')}
+                            onPress={() => navigation.navigate('Detail', { id: item._id })}
                         />
                     )}
-                // key={item => item.id}
+                // keyExtractor={item => item.id}
                 />
 
                 <TouchableOpacity style={styles.btnSeenAll} onPress={() => { navigation.navigate('ListProduct') }}>
@@ -46,7 +60,7 @@ const Home = ({ navigation }) => {
                 <FlatList
                     numColumns={2}
                     columnWrapperStyle={{ justifyContent: 'space-between' }}
-                    data={chau}
+                    data={products}
                     renderItem={({ item, index }) => (
                         <SectionProduct
                             item={item}
@@ -65,7 +79,7 @@ const Home = ({ navigation }) => {
                 <FlatList
                     numColumns={2}
                     columnWrapperStyle={{ justifyContent: 'space-between' }}
-                    data={phukien}
+                    data={products}
                     renderItem={({ item, index }) => (
                         <SectionProduct
                             item={item}

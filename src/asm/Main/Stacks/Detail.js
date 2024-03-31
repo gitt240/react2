@@ -1,15 +1,51 @@
 import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderCustom from '../../HeaderCustom'
+import AxiosInstance from '../../helpers/AxiosInstance'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItemToCart } from '../../Redux/Reducer'
 
-const Detail = ({ navigation }) => {
+const Detail = ({ navigation, route }) => {
+  const id = route.params.id
+  console.log(id);
+  const [product, setProduct] = useState({})
+
+  useEffect(() => {
+    const getProductDetail = async () => {
+      try {
+        const response = await AxiosInstance().get(`/products/${id}`)
+        if (response.status) {
+          setProduct(response.data)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getProductDetail()
+  }, [])
+
+  const dispatch = useDispatch()
+  const appState = useSelector(state => state.app)
+
+  const addToCart = () => {
+    const item = {
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      images: product.images,
+    }
+    dispatch(addItemToCart(item))
+    // navigation.navigate('Cart')
+  }
+  const { _id, name, price, quantity, images } = product
   return (
     <View style={styles.container}>
       <View style={styles.viewHead}>
         <HeaderCustom
           goBack={() => { navigation.goBack() }}
           leftIcon={require('../../../../assets/image/asm/detail/back.png')}
-          title={'Spider Plant'}
+          title={name}
           rightIcon={require('../../../../assets/image/asm/detail/cart.png')}
         />
       </View>
@@ -18,7 +54,7 @@ const Detail = ({ navigation }) => {
         <TouchableOpacity style={styles.btnLeft}>
           <Image source={require('../../../../assets/image/asm/detail/left.png')} />
         </TouchableOpacity>
-        <Image style={styles.imgProduct} source={require('../../../../assets/image/asm/home/p1.png')} />
+        {images && <Image style={styles.imgProduct} source={{ uri: images[0] }} />}
         <TouchableOpacity style={styles.btnRight}>
           <Image source={require('../../../../assets/image/asm/detail/right.png')} />
         </TouchableOpacity>
@@ -34,7 +70,7 @@ const Detail = ({ navigation }) => {
           </View>
         </View>
 
-        <Text style={styles.txtPrice}>250.000đ</Text>
+        <Text style={styles.txtPrice}>{price}</Text>
         <Text style={styles.txtDetail}>Chi tiết sản phẩm</Text>
 
         <View style={styles.viewRow}>
@@ -47,7 +83,7 @@ const Detail = ({ navigation }) => {
         </View>
         <View style={styles.viewRow}>
           <Text style={styles.txtBlack}>Tình trạng</Text>
-          <Text style={styles.txtGreen}>Còn 156 sp</Text>
+          <Text style={styles.txtGreen}>Còn {quantity} sp</Text>
         </View>
       </View>
 
@@ -71,7 +107,7 @@ const Detail = ({ navigation }) => {
             <Text style={styles.txtPriceBlack}>250.000đ</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.btnBuy} onPress={() => { navigation.navigate('Cart') }}>
+        <TouchableOpacity style={styles.btnBuy} onPress={addToCart}>
           <Text style={styles.txtBuy}>Chọn mua</Text>
         </TouchableOpacity>
       </View>
