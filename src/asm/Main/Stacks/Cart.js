@@ -1,30 +1,33 @@
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import HeaderCustom from '../../HeaderCustom'
+import { useSelector } from 'react-redux'
 
 const Cart = ({ navigation }) => {
-    const [data, setData] = useState(CART)
+    const appState = useSelector(state => state.app)
+    const [cart, setCart] = useState(appState.cart)
 
     const renderItem = ({ item }) => {
-        const { id, name, img } = item
+        const { _id, name, price, quantity, images } = item
+        console.log(images);
         return (
             <View style={styles.viewProduct}>
                 <TouchableOpacity>
                     <Image source={require('../../../../assets/image/asm/cart/checked.png')} />
                 </TouchableOpacity>
                 <View style={styles.viewImgProduct}>
-                    <Image style={styles.imgProduct} source={img} />
+                    <Image style={styles.imgProduct} source={{uri:images[0]}} />
                 </View>
 
                 <View>
                     <Text style={styles.txtName}>{name} <Text style={styles.txtName}>|</Text> <Text style={styles.txtProperty}>Ưa bóng</Text></Text>
-                    <Text style={styles.txtPrice}>250.000đ</Text>
+                    <Text style={styles.txtPrice}>{price}đ</Text>
                     <View style={styles.viewRow}>
                         <View style={styles.viewQuantity}>
                             <TouchableOpacity>
                                 <Image style={styles.imgQuantity} source={require('../../../../assets/image/asm/together/reduce.png')} />
                             </TouchableOpacity>
-                            <Text style={styles.txtQuantity}>1</Text>
+                            <Text style={styles.txtQuantity}>{quantity}</Text>
                             <TouchableOpacity>
                                 <Image style={styles.imgQuantity} source={require('../../../../assets/image/asm/together/increase.png')} />
                             </TouchableOpacity>
@@ -45,9 +48,9 @@ const Cart = ({ navigation }) => {
             />
 
             <FlatList
-                data={data}
+                data={cart}
                 renderItem={renderItem}
-                key={item => item.id}
+                key={item => item._id}
             />
 
             <View style={styles.viewRow}>
