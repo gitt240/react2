@@ -30,6 +30,7 @@ const appSlice = createSlice({
         builder.addCase(login.rejected, (state, action) => {
             console.log('...rejected....');
         })
+        
     }
 });
 

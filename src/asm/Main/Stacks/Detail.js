@@ -7,7 +7,7 @@ import { addItemToCart } from '../../Redux/Reducer'
 
 const Detail = ({ navigation, route }) => {
   const id = route.params.id
-  console.log(id);
+  // console.log(id);
   const [product, setProduct] = useState({})
 
   useEffect(() => {
@@ -25,7 +25,6 @@ const Detail = ({ navigation, route }) => {
   }, [])
 
   const dispatch = useDispatch()
-  const appState = useSelector(state => state.app)
 
   const addToCart = () => {
     const item = {
@@ -39,6 +38,11 @@ const Detail = ({ navigation, route }) => {
     // navigation.navigate('Cart')
   }
   const { _id, name, price, quantity, images } = product
+
+  const VND = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND'
+  })
   return (
     <View style={styles.container}>
       <View style={styles.viewHead}>
@@ -47,6 +51,7 @@ const Detail = ({ navigation, route }) => {
           leftIcon={require('../../../../assets/image/asm/detail/back.png')}
           title={name}
           rightIcon={require('../../../../assets/image/asm/detail/cart.png')}
+          onPress={() => { navigation.navigate('Cart') }}
         />
       </View>
 
@@ -70,7 +75,7 @@ const Detail = ({ navigation, route }) => {
           </View>
         </View>
 
-        <Text style={styles.txtPrice}>{price}</Text>
+        <Text style={styles.txtPrice}>{VND.format(price)}</Text>
         <Text style={styles.txtDetail}>Chi tiết sản phẩm</Text>
 
         <View style={styles.viewRow}>

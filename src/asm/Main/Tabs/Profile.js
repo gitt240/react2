@@ -1,8 +1,14 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import HeaderCustom from '../../HeaderCustom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../Redux/Reducer'
 
 const Profile = ({navigation}) => {
+    const dispatch = useDispatch()
+    const handlelogout=()=>{
+        dispatch(logout())
+    }
     return (
         <View style={styles.container}>
             <HeaderCustom title={'Profile'} />
@@ -35,7 +41,7 @@ const Profile = ({navigation}) => {
             <TouchableOpacity style={styles.btn}>
                 <Text style={styles.txtBlack}>Chính sách quyền riêng tư</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={handlelogout}>
                 <Text style={styles.txtRed}>Đăng xuất</Text>
             </TouchableOpacity>
         </View>
