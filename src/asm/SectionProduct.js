@@ -1,5 +1,6 @@
 import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import VND from './format/FormatCurrency'
 
 const SectionProduct = ({ item, index, onPress }) => {
     const { _id, name, images, price, property } = item
@@ -10,7 +11,7 @@ const SectionProduct = ({ item, index, onPress }) => {
             </View>
             <Text style={styles.txtName}>{name}</Text>
             {property && <Text style={styles.txtProperty}>{property}</Text>}
-            <Text style={styles.txtPrice}>{price}đ</Text>
+            <Text style={styles.txtPrice}>{VND.format(price)}</Text>
         </TouchableOpacity>
     )
 }

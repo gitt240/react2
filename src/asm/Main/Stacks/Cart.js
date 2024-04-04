@@ -2,6 +2,7 @@ import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react
 import React, { useState } from 'react'
 import HeaderCustom from '../../HeaderCustom'
 import { useSelector } from 'react-redux'
+import VND from '../../format/FormatCurrency'
 
 const Cart = ({ navigation }) => {
     const appState = useSelector(state => state.app)
@@ -9,7 +10,7 @@ const Cart = ({ navigation }) => {
 
     const renderItem = ({ item }) => {
         const { _id, name, price, quantity, images } = item
-        console.log(images);
+        // console.log(images);
         return (
             <View style={styles.viewProduct}>
                 <TouchableOpacity>
@@ -21,7 +22,7 @@ const Cart = ({ navigation }) => {
 
                 <View>
                     <Text style={styles.txtName}>{name} <Text style={styles.txtName}>|</Text> <Text style={styles.txtProperty}>Ưa bóng</Text></Text>
-                    <Text style={styles.txtPrice}>{price}đ</Text>
+                    <Text style={styles.txtPrice}>{VND.format(price)}</Text>
                     <View style={styles.viewRow}>
                         <View style={styles.viewQuantity}>
                             <TouchableOpacity>
