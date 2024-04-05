@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux'
 import { login } from '../Redux/UserAPI'
 
 const Login = ({ navigation }) => {
-    const [email, setEmail] = useState('mastertao322@gmail.com')
-    const [password, setPassword] = useState('123@asA')
+    const [email, setEmail] = useState('ti1@gmail.com')
+    const [password, setPassword] = useState('1')
     const [errorEmail, setErrorEmail] = useState('')
     const [errorPass, setErrorPass] = useState('')
     const dispatch = useDispatch()
@@ -58,12 +58,12 @@ const Login = ({ navigation }) => {
                 <Text style={styles.txtHead}>Chào mừng bạn</Text>
                 <Text style={styles.txtSubHead}>Đăng nhập tài khoản</Text>
                 <View style={styles.viewInput}>
-                    <TextInput style={[styles.input, errorEmail ? styles.inputError : styles.input]} placeholder='Nhập email hoặc số điện thoại' value={email} onChangeText={(text)=>changeEmail(text)} />
+                    <TextInput style={[styles.input, errorEmail ? styles.inputError : styles.input]} placeholder='Nhập email hoặc số điện thoại' value={email} onChangeText={(text) => changeEmail(text)} />
                     {errorEmail && <Text style={styles.txtError}>{errorEmail}</Text>}
                 </View>
                 <View style={styles.viewInput}>
                     <View style={styles.viewPass}>
-                        <TextInput style={[styles.input, errorPass ? styles.inputError : styles.input]} placeholder='Mật khẩu' value={password} onChangeText={(text)=>changePass(text)} secureTextEntry={true} />
+                        <TextInput style={[styles.input, errorPass ? styles.inputError : styles.input]} placeholder='Mật khẩu' value={password} onChangeText={(text) => changePass(text)} secureTextEntry={true} />
                         <TouchableOpacity style={styles.btnEye}>
                             <Image source={require('../../../assets/image/asm/login_register/hiden_pass.png')} />
                         </TouchableOpacity>
