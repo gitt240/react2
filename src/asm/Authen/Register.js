@@ -1,15 +1,19 @@
-import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import { Image, ImageBackground, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { register } from '../Redux/UserAPI'
 
 const Register = ({ navigation }) => {
-    const [email, setEmail] = useState('')
-    const [pass, setPass] = useState('')
-    const [name, setName] = useState('')
+    const [email, setEmail] = useState('ti1@gmail.com')
+    const [password, setPassword] = useState('1')
+    const [name, setName] = useState('ti')
     const [phone, setPhone] = useState('')
     const [errorEmail, setErrorEmail] = useState('')
     const [errorPass, setErrorPass] = useState('')
     const [errorName, setErrorName] = useState('')
     const [errorPhone, setErrorPhone] = useState('')
+    const dispatch = useDispatch()
+    const { registerData } = useSelector(state => state.register)
 
     const changeEmail = (data) => {
         setEmail(data)
@@ -17,7 +21,7 @@ const Register = ({ navigation }) => {
     }
 
     const changePass = (data) => {
-        setPass(data)
+        setPassword(data)
         setErrorPass('')
     }
 
@@ -31,24 +35,38 @@ const Register = ({ navigation }) => {
         setErrorPhone('')
     }
 
-    const checkEmpty = () => {
-        if (!name) {
-            setErrorName('Họ tên không được để trống')
-            return
-        }
-        if (!email) {
-            setErrorEmail('Vui lòng nhập email')
-            return
-        }
-        if (!phone) {
-            setErrorPhone('Số điện thoại không được để trống')
-        }
-        if (!pass) {
-            setErrorPass('Vui lòng nhập mật khẩu')
-            return
-        }
+    const handleRegister = async () => {
+        try {
+            // if (!name) {
+            //     setErrorName('Họ tên không được để trống')
+            //     return
+            // }
+            // if (!email) {
+            //     setErrorEmail('Vui lòng nhập email')
+            //     return
+            // }
+            // if (!phone) {
+            //     setErrorPhone('Số điện thoại không được để trống')
+            // }
+            // if (!pass) {
+            //     setErrorPass('Vui lòng nhập mật khẩu')
+            //     return
+            // }
+            dispatch(register({ email, password, name }))
+            // console.log(result);
+            // console.log(registerData);
+            // if (registerData) {
+            //     navigation.goBack()
+            //     ToastAndroid.show('Đăng ký thành công', ToastAndroid.SHORT)
+            // } else (
+            //     ToastAndroid.show('Đăng ký thất bại', ToastAndroid.SHORT)
+            // )
 
+        } catch (error) {
+
+        }
     }
+
     return (
         <View style={styles.container}>
             {/* <ImageBackground style={styles.imgBackground} source={require('../../assets/image/asm/login_register/background2.png')} >
@@ -63,11 +81,11 @@ const Register = ({ navigation }) => {
                 <Text style={styles.txtHead}>Đăng ký</Text>
                 <Text style={styles.txtSubHead}>Tạo tài khoản</Text>
                 <View style={styles.viewInput}>
-                    <TextInput style={[styles.input, errorName ? styles.inputError : styles.input]} placeholder='Họ tên' onChangeText={(text) => { changeName(text) }} />
+                    <TextInput style={[styles.input, errorName ? styles.inputError : styles.input]} placeholder='Họ tên' value={name} onChangeText={(text) => { changeName(text) }} />
                     {errorName && <Text style={styles.txtError}>{errorName}</Text>}
                 </View>
                 <View style={styles.viewInput}>
-                    <TextInput style={[styles.input, errorEmail ? styles.inputError : styles.input]} placeholder='E-mail' onChangeText={(text) => { changeEmail(text) }} />
+                    <TextInput style={[styles.input, errorEmail ? styles.inputError : styles.input]} placeholder='E-mail' value={email} onChangeText={(text) => { changeEmail(text) }} />
                     {errorEmail && <Text style={styles.txtError}>{errorEmail}</Text>}
                 </View>
                 <View style={styles.viewInput}>
@@ -76,7 +94,7 @@ const Register = ({ navigation }) => {
                 </View>
                 <View style={styles.viewInput}>
                     <View style={styles.viewPass}>
-                        <TextInput style={[styles.input, errorPass ? styles.inputError : styles.input]} placeholder='Mật khẩu' onChangeText={(text) => { changePass(text) }} />
+                        <TextInput style={[styles.input, errorPass ? styles.inputError : styles.input]} placeholder='Mật khẩu' value={password} onChangeText={(text) => { changePass(text) }} />
                         <TouchableOpacity style={styles.btnEye}>
                             <Image source={require('../../../assets/image/asm/login_register/hiden_pass.png')} />
                         </TouchableOpacity>
@@ -86,7 +104,7 @@ const Register = ({ navigation }) => {
 
                 <Text style={styles.txtRule}>Để đăng ký tài khoản, bạn đồng ý <Text style={styles.txtGreen}>Terms & Conditions</Text> and <Text style={styles.txtGreen}>Privacy Policy</Text></Text>
 
-                <TouchableOpacity style={styles.btnRegister} onPress={checkEmpty}>
+                <TouchableOpacity style={styles.btnRegister} onPress={handleRegister}>
                     <Text style={styles.txtRegister}>Đăng ký</Text>
                 </TouchableOpacity>
 

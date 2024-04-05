@@ -24,13 +24,17 @@ const appSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
+        builder.addCase(login.pending, (state, action) => {
+            console.log('loading.....');
+        })
         builder.addCase(login.fulfilled, (state, action) => {
             state.user = action.payload
+            console.log('success.....');
         })
         builder.addCase(login.rejected, (state, action) => {
             console.log('...rejected....');
         })
-        
+
     }
 });
 
