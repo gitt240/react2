@@ -6,15 +6,18 @@ import {
 } from 'react-native';
 
 import { Provider } from 'react-redux';
-import store from './src/asm/Redux/Store';
+import { persistor, store } from './src/asm/Redux/Store';
 import AppNavigation from './src/asm/AppNavigation';
 import QAA from './src/asm/Main/Stacks/QAA';
+import { PersistGate } from 'redux-persist/integration/react';
 
 function App(): React.JSX.Element {
 
   return (
     <Provider store={store}>
-      <AppNavigation/>
+      <PersistGate persistor={persistor}>
+        <AppNavigation />
+      </PersistGate>
     </Provider>
   );
 }

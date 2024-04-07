@@ -2,11 +2,11 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import HeaderCustom from '../../HeaderCustom'
 import { useDispatch } from 'react-redux'
-import { logout } from '../../Redux/Reducer'
+import { logout } from '../../Redux/LoginSlice'
 
-const Profile = ({navigation}) => {
+const Profile = ({ navigation }) => {
     const dispatch = useDispatch()
-    const handlelogout=()=>{
+    const handlelogout = () => {
         dispatch(logout())
     }
     return (
@@ -21,16 +21,16 @@ const Profile = ({navigation}) => {
             </View>
 
             <Text style={styles.txtTitle}>Chung</Text>
-            <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('EditProfile')}}>
+            <TouchableOpacity style={styles.btn} onPress={() => { navigation.navigate('EditProfile') }}>
                 <Text style={styles.txtBlack}>Chỉnh sửa thông tin</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btn}>
                 <Text style={styles.txtBlack}>Cẩm nang trồng cây</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('History')}}>
+            <TouchableOpacity style={styles.btn} onPress={() => { navigation.navigate('History') }}>
                 <Text style={styles.txtBlack}>Lịch sử giao dịch</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('QAA')}}>
+            <TouchableOpacity style={styles.btn} onPress={() => { navigation.navigate('QAA') }}>
                 <Text style={styles.txtBlack}> Q & A</Text>
             </TouchableOpacity>
 

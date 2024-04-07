@@ -2,24 +2,39 @@ import { FlatList, Image, ImageBackground, ScrollView, StatusBar, StyleSheet, Te
 import React, { useEffect, useState } from 'react'
 import SectionProduct from '../../SectionProduct'
 import AxiosInstance from '../../helpers/AxiosInstance'
+import { useSelector, useDispatch } from 'react-redux'
+import { getProduct, searchProduct } from '../../Redux/API/ProductAPI'
 
 const Home = ({ navigation }) => {
     const [products, setProducts] = useState([])
+    const [categories, setCategories] = useState([])
     const [plant, setPlant] = useState(PLANT)
     const [chau, setChau] = useState(CHAU)
     const [phukien, setPhuKien] = useState(PHUKIEN)
+    const dispatch = useDispatch()
+    const { data } = useSelector(state => state.getProduct)
 
-    const getProduct = async () => {
+
+    const getProducts = async () => {
         try {
-            const response = await AxiosInstance().get('./products')
-            setProducts(response.data)
+            dispatch(getProduct())
         } catch (error) {
             console.log(error);
         }
     }
     useEffect(() => {
-        getProduct()
+        getProducts()
     }, [])
+
+    useEffect(() => {
+        try {
+            if (data.length > 0) {
+                setProducts(data)
+            }
+        } catch (error) {
+
+        }
+    }, [data])
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
             <View style={styles.viewHead}>

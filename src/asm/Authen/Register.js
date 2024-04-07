@@ -1,7 +1,7 @@
 import { Image, ImageBackground, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { register } from '../Redux/UserAPI'
+import { register } from '../Redux/API/UserAPI'
 
 const Register = ({ navigation }) => {
     const [email, setEmail] = useState('ti1@gmail.com')

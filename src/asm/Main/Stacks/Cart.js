@@ -1,15 +1,68 @@
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderCustom from '../../HeaderCustom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import VND from '../../format/FormatCurrency'
+import { deleteAllOrder, deleteOrder, getOrder, updateOrder } from '../../Redux/API/OrderAPI'
+import AxiosInstance from '../../helpers/AxiosInstance'
 
 const Cart = ({ navigation }) => {
-    const appState = useSelector(state => state.app)
-    const [cart, setCart] = useState(appState.cart)
+    const { loginData } = useSelector(state => state.login)
+    const { getOrderData, getOrderStatus } = useSelector(state => state.getOrder)
+    const dispatch = useDispatch()
+    const [cart, setCart] = useState([])
+    const user = loginData._id
+    const products = getOrderData.map(item => item.product)
+    const totalPrice = products.reduce((total, item) => {
+        return total + item.price * item.quantity
+    }, 0)
+
+
+    useEffect(() => {
+        const getCart = async () => {
+            try {
+                dispatch(getOrder(user))
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getCart()
+    }, [])
+
+    useEffect(() => {
+        if (getOrderData.length > 0) {
+            setCart(getOrderData);
+        }
+        if (getOrderData.length === 0) {
+            setCart([]);
+        }
+    }, [getOrderData]);
+    // console.log('data: ', getOrderData);
+
+    const handleDeleteOneOrder = async (_id) => {
+        const id = _id
+        dispatch(deleteOrder(id))
+        dispatch(getOrder(user))
+    }
+
+    const handleDeleteAllOrder = async () => {
+        dispatch(deleteAllOrder(user))
+        dispatch(getOrder(user))
+        // setCart([])
+    }
+
+    const handleChangeQuantity = (_id, quantity) => {
+        const id = _id
+        const change = quantity
+        dispatch(updateOrder({id,change }))
+        dispatch(getOrder(user))
+    }
 
     const renderItem = ({ item }) => {
-        const { _id, name, price, quantity, images } = item
+        const { _id, user, product } = item
+        const { images, name, price, quantity } = product
+
+        // console.log('item: ', item);
         // console.log(images);
         return (
             <View style={styles.viewProduct}>
@@ -17,7 +70,7 @@ const Cart = ({ navigation }) => {
                     <Image source={require('../../../../assets/image/asm/cart/checked.png')} />
                 </TouchableOpacity>
                 <View style={styles.viewImgProduct}>
-                    <Image style={styles.imgProduct} source={{uri:images[0]}} />
+                    <Image style={styles.imgProduct} source={{ uri: images[0] }} />
                 </View>
 
                 <View>
@@ -25,15 +78,17 @@ const Cart = ({ navigation }) => {
                     <Text style={styles.txtPrice}>{VND.format(price)}</Text>
                     <View style={styles.viewRow}>
                         <View style={styles.viewQuantity}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => handleChangeQuantity(_id, -1)} >
                                 <Image style={styles.imgQuantity} source={require('../../../../assets/image/asm/together/reduce.png')} />
                             </TouchableOpacity>
                             <Text style={styles.txtQuantity}>{quantity}</Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => handleChangeQuantity(_id, 1)}>
                                 <Image style={styles.imgQuantity} source={require('../../../../assets/image/asm/together/increase.png')} />
                             </TouchableOpacity>
                         </View>
-                        <Text style={styles.txtRemove}>Xoá</Text>
+                        <TouchableOpacity onPress={() => handleDeleteOneOrder(_id)}>
+                            <Text style={styles.txtRemove}>Xoá</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -46,23 +101,33 @@ const Cart = ({ navigation }) => {
                 title={'Giỏ hàng'}
                 rightIcon={require('../../../../assets/image/asm/together/trash.png')}
                 goBack={() => navigation.goBack()}
+                onPress={handleDeleteAllOrder}
             />
 
             <FlatList
+            showsVerticalScrollIndicator={false}
                 data={cart}
                 renderItem={renderItem}
-                key={item => item._id}
+                ListEmptyComponent={<Text style={styles.txtCartEmpty}>Giỏ hàng của bạn hiện đang trống</Text>}
+                keyExtractor={item => item._id.toString()}
             />
 
-            <View style={styles.viewRow}>
-                <Text>Tạm tính</Text>
-                <Text style={styles.txtTotalPrice}>500.000đ</Text>
-            </View>
+            {cart.length > 0 &&
+                <View style={styles.viewRow}>
+                    <Text>Tạm tính</Text>
+                    <Text style={styles.txtTotalPrice}>{VND.format(totalPrice)}</Text>
+                </View>
+            }
 
-            <TouchableOpacity style={styles.btnPay} onPress={() => { navigation.navigate('Payment') }}>
-                <Text style={styles.txtPay}>Tiến hành thanh toán</Text>
-                <Image source={require('../../../../assets/image/asm/cart/right.png')} />
-            </TouchableOpacity>
+            {cart.length > 0 &&
+                <TouchableOpacity style={styles.btnPay} onPress={() => { navigation.navigate('Payment') }}>
+                    <Text style={styles.txtPay}>Tiến hành thanh toán</Text>
+                    <Image source={require('../../../../assets/image/asm/cart/right.png')} />
+                </TouchableOpacity>
+            }
+
+
+
         </View>
     )
 }
@@ -70,6 +135,12 @@ const Cart = ({ navigation }) => {
 export default Cart
 
 const styles = StyleSheet.create({
+    txtCartEmpty: {
+        color: '#000',
+        fontSize: 16,
+        textAlign: 'center',
+        marginTop: 30
+    },
     txtPay: {
         fontSize: 18,
         color: '#fff'
