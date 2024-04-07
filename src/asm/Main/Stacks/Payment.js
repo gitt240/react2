@@ -1,8 +1,39 @@
-import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity, ToastAndroid } from 'react-native'
 import React from 'react'
 import HeaderCustom from '../../HeaderCustom'
+import { useSelector, useDispatch } from 'react-redux'
+import { addToCart } from '../../Redux/API/CartAPI'
+import { deleteAllOrder } from '../../Redux/API/OrderAPI'
+
 
 const Payment = ({ navigation }) => {
+    const { getOrderData } = useSelector(state => state.getOrder)
+    const { loginData } = useSelector(state => state.login)
+    const productOrder = getOrderData.map(item => item.product)
+    const dispatch = useDispatch()
+    // const product = item.map(item=>item._id)
+    // console.log(product);
+
+    const addCart = () => {
+        try {
+            const user = loginData._id
+            const products = []
+            for (let index = 0; index < productOrder.length; index++) {
+                const product = productOrder[index];
+                const item = { _id: product._id, quantity: product.quantity }
+                products.push(item)
+            }
+            dispatch(addToCart({ user, products }))
+            dispatch(deleteAllOrder(user))
+            // console.log("products: ",products);
+            ToastAndroid.show('Đặt hàng thành công', ToastAndroid.SHORT)
+            navigation.navigate('Home')
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <View style={styles.container}>
             <HeaderCustom leftIcon={require('../../../../assets/image/asm/together/back.png')} title={'Thanh toán'} goBack={() => navigation.goBack()} />
@@ -55,7 +86,7 @@ const Payment = ({ navigation }) => {
                     <Text style={styles.txtGreen}>515.000đ</Text>
                 </View>
 
-                <TouchableOpacity style={styles.btnPay} onPress={() => { navigation.navigate('Home') }}>
+                <TouchableOpacity style={styles.btnPay} onPress={addCart}>
                     <Text style={styles.txtPay}>Tiếp tục</Text>
                 </TouchableOpacity>
             </View>

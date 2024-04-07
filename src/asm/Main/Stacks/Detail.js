@@ -1,43 +1,54 @@
-import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, ImageBackground, StyleSheet, Text, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HeaderCustom from '../../HeaderCustom'
 import AxiosInstance from '../../helpers/AxiosInstance'
 import { useDispatch, useSelector } from 'react-redux'
-import { addItemToCart } from '../../Redux/Reducer'
+import { addItemToCart } from '../../Redux/LoginSlice'
+import { addToOrder } from '../../Redux/API/OrderAPI'
+import { getProductDetail } from '../../Redux/API/ProductAPI'
 
 const Detail = ({ navigation, route }) => {
   const id = route.params.id
   // console.log(id);
-  const [product, setProduct] = useState({})
+  const [productDetail, setProductDetail] = useState({})
+  const { data } = useSelector(state => state.getProductDetail)
+  const dispatch = useDispatch()
+  const { loginData } = useSelector(state => state.login)
 
   useEffect(() => {
-    const getProductDetail = async () => {
+    const getProductDetails = async () => {
       try {
-        const response = await AxiosInstance().get(`/products/${id}`)
-        if (response.status) {
-          setProduct(response.data)
-        }
+        dispatch(getProductDetail(id))
       } catch (error) {
         console.log(error);
       }
     }
-    getProductDetail()
-  }, [])
+    getProductDetails()
+  }, [id])
 
-  const dispatch = useDispatch()
-
-  const addToCart = () => {
-    const item = {
-      _id: product._id,
-      name: product.name,
-      price: product.price,
-      quantity: 1,
-      images: product.images,
+  useEffect(() => {
+    try {
+      setProductDetail(data)
+    } catch (error) {
+      console.log(error);
     }
-    dispatch(addItemToCart(item))
-    // navigation.navigate('Cart')
+  }, [data])
+
+
+
+  const addToCart = async () => {
+    try {
+      const user = loginData._id
+      const product = productDetail._id
+      dispatch(addToOrder({ user, product }))
+      ToastAndroid.show('Đã thêm sản phẩm vào giỏ hàng', ToastAndroid.SHORT)
+      console.log('user:', user);
+      // navigation.navigate('Cart')
+    } catch (error) {
+
+    }
   }
-  const { _id, name, price, quantity, images } = product
+  const { _id, name, price, quantity, images } = productDetail
 
   const VND = new Intl.NumberFormat('vi-VN', {
     style: 'currency',

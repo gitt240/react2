@@ -1,7 +1,7 @@
 import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { login } from '../Redux/UserAPI'
+import { login } from '../Redux/API/UserAPI'
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState('ti1@gmail.com')

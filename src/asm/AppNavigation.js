@@ -6,10 +6,10 @@ import UserNavigation from './Authen/UserNavigation'
 import { useSelector } from 'react-redux'
 
 const AppNavigation = () => {
-  const appState = useSelector(state => state.app)
+  const {loginData} = useSelector(state => state.login)
   return (
     <NavigationContainer>
-      {appState.user ? <MainStackNavigation /> : <UserNavigation />}
+      {loginData? <MainStackNavigation /> : <UserNavigation />}
     </NavigationContainer>
   )
 }

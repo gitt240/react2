@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import AxiosInstance from "../helpers/AxiosInstance";
+import AxiosInstance from "../../helpers/AxiosInstance";
 
 export const login = createAsyncThunk(
     "user/login",
@@ -23,7 +23,7 @@ export const register = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await AxiosInstance().post("/users/register", data)
-            if (response.status==true) {
+            if (response.status == true) {
                 return response.data
             } else {
                 return rejectWithValue(error)

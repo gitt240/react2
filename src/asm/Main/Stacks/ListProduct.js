@@ -2,6 +2,8 @@ import { FlatList, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'r
 import React, { useState } from 'react'
 import HeaderCustom from '../../HeaderCustom'
 import SectionProduct from '../../SectionProduct'
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const ListProduct = ({ navigation }) => {
     const [category, setCategory] = useState(CATEGORY)

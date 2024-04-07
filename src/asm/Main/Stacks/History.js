@@ -1,31 +1,81 @@
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderCustom from '../../HeaderCustom'
+import { useSelector, useDispatch } from 'react-redux'
+import { getCarts } from '../../Redux/API/CartAPI'
+import { format, parseISO } from 'date-fns'
+
 
 const History = ({ navigation }) => {
-    const [plant, setPlant] = useState(PLANT)
+    const { data } = useSelector(state => state.getCart)
+    const { loginData } = useSelector(state => state.login)
+    const [plant, setPlant] = useState([])
+    const dispatch = useDispatch()
+    const user = loginData._id
+    // console.log('data: ', data);
+
+    useEffect(() => {
+        const getCart = async () => {
+            dispatch(getCarts(user))
+        }
+        getCart()
+    }, [])
+
+    useEffect(() => {
+        try {
+            if (data.length > 0) {
+                setPlant(data)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }, [data])
+
     const renderItem = ({ item }) => {
-        const { id, name, property, quantity, image, buy_at, status } = item
+        const { _id, date, products, status, user } = item
+        const datefns = parseISO(date)
+        const formatDate = format(datefns, "EEEE, MM/dd/yyyy 'lúc' HH:mm" )
+        let statusText, statusStyle
+        if (status == 1) {
+            statusText = 'Chờ xác nhận'
+            statusStyle = styles.txtStatusWait
+        } else if (status == 2) {
+            statusText = 'Đang giao hàng'
+            statusStyle = styles.txtStatusShip
+        } else if (status == 3) {
+            statusText = 'Đặt hàng thành công'
+            statusStyle = styles.txtStatusFinish
+        } else if (status == 4) {
+            statusText = 'Huỷ đơn hàng'
+            statusStyle = styles.txtStatusCancel
+        }
         return (
             <View style={styles.viewBody}>
-                <Text style={styles.txtTime}>{buy_at}</Text>
-                <View style={styles.viewRow}>
-                    <View style={styles.viewImg}>
-                        <Image style={styles.imgProduct} source={image} />
-                    </View>
-                    <View style={styles.viewInfo}>
-                        {status == 'Đặt hàng thành công' ? <Text style={styles.txtStatus}>{status}</Text> : <Text style={styles.txtStatusCancel}>{status}</Text>}
-                        <Text style={styles.txtName}>{name} <Text style={styles.txtName}>|</Text> <Text style={styles.txtProperty}>{property}</Text></Text>
-                        <Text style={styles.txtQuantity}>{quantity} sản phẩm</Text>
-                    </View>
-                </View>
-            </View>
+                <Text style={styles.txtTime}>{formatDate}</Text>
+                {products.map((product, index) => {
+                    const { _id, name, images, property, quantity, price } = product
+                    return (
+                        < View key={index} style={styles.viewRow} >
+                            <View style={styles.viewImg}>
+                                <Image style={styles.imgProduct} source={{ uri: images[0] }} />
+                            </View>
+                            <View style={styles.viewInfo}>
+                                <Text style={statusStyle}>{statusText}</Text>
+                                <Text style={styles.txtName}>{name} <Text style={styles.txtName}>|</Text> <Text style={styles.txtProperty}>{property}</Text></Text>
+                                <Text style={styles.txtQuantity}>{quantity} sản phẩm</Text>
+                            </View>
+                        </View>
+                    )
+                })
+                }
+            </View >
         )
     }
     return (
         <View style={styles.container}>
             <HeaderCustom leftIcon={require('../../../../assets/image/asm/together/back.png')} title={"Lịch sử giao dịch"} goBack={() => navigation.goBack()} />
             <FlatList
+                showsVerticalScrollIndicator={false}
                 data={plant}
                 renderItem={renderItem}
                 key={item => item.id}
@@ -51,12 +101,22 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         marginVertical: 2
     },
+    txtStatusShip: {
+        fontSize: 16,
+        color: '#4584ff',
+        fontWeight: '500'
+    },
+    txtStatusWait: {
+        fontSize: 16,
+        color: '#fdc13d',
+        fontWeight: '500'
+    },
     txtStatusCancel: {
         fontSize: 16,
         color: '#FF0000',
         fontWeight: '500'
     },
-    txtStatus: {
+    txtStatusFinish: {
         fontSize: 16,
         color: '#007537',
         fontWeight: '500'

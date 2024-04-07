@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { register } from "../UserAPI"
+import { register } from "../API/UserAPI"
 
 
 const initialState = {
